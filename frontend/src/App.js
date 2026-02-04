@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import './App.css';
-import EmploymentTrends from './components/EmploymentTrends';
-import SalaryCorrelation from './components/SalaryCorrelation';
-import EnrollmentAnalysis from './components/EnrollmentAnalysis';
+import React, { useState } from "react";
+import "./App.css";
+import EmploymentTrends from "./components/EmploymentTrends";
+import SalaryCorrelation from "./components/SalaryCorrelation";
+import EnrollmentAnalysis from "./components/EnrollmentAnalysis";
 
 function App() {
-  const [activeTab, setActiveTab] = useState('employment');
+  const [activeTab, setActiveTab] = useState("employment");
 
   return (
     <div className="App">
@@ -15,30 +15,30 @@ function App() {
       </header>
 
       <nav className="analytics-nav">
-        <button 
-          className={activeTab === 'employment' ? 'active' : ''}
-          onClick={() => setActiveTab('employment')}
+        <button
+          className={activeTab === "employment" ? "active" : ""}
+          onClick={() => setActiveTab("employment")}
         >
           Employment Trends
         </button>
-        <button 
-          className={activeTab === 'salary' ? 'active' : ''}
-          onClick={() => setActiveTab('salary')}
+        <button
+          className={activeTab === "salary" ? "active" : ""}
+          onClick={() => setActiveTab("salary")}
         >
           Salary Correlation
         </button>
-        <button 
-          className={activeTab === 'enrollment' ? 'active' : ''}
-          onClick={() => setActiveTab('enrollment')}
+        <button
+          className={activeTab === "enrollment" ? "active" : ""}
+          onClick={() => setActiveTab("enrollment")}
         >
           Enrollment Analysis
         </button>
       </nav>
 
       <main className="analytics-content">
-        {activeTab === 'employment' && <EmploymentTrends />}
-        {activeTab === 'salary' && <SalaryCorrelation />}
-        {activeTab === 'enrollment' && <EnrollmentAnalysis />}
+        {activeTab === "employment" && <EmploymentTrends />}
+        {activeTab === "salary" && <SalaryCorrelation />}
+        {activeTab === "enrollment" && <EnrollmentAnalysis />}
       </main>
 
       <footer className="app-footer">
