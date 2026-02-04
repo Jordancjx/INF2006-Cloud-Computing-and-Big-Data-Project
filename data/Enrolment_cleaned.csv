@@ -1,0 +1,959 @@
+year,sex,school_id,school_name,enrolment
+1982,F,9,National University of Singapore,5563.0
+1982,MF,9,National University of Singapore,11093.0
+1983,F,9,National University of Singapore,6596.0
+1983,MF,9,National University of Singapore,11939.0
+1984,F,9,National University of Singapore,7076.0
+1984,MF,9,National University of Singapore,12721.0
+1985,F,9,National University of Singapore,7396.0
+1985,MF,9,National University of Singapore,13617.0
+1986,F,9,National University of Singapore,7581.0
+1986,MF,9,National University of Singapore,14150.0
+1987,F,9,National University of Singapore,6822.0
+1987,MF,9,National University of Singapore,13238.0
+1988,F,9,National University of Singapore,7490.0
+1988,MF,9,National University of Singapore,14317.0
+1989,F,9,National University of Singapore,7857.0
+1989,MF,9,National University of Singapore,14645.0
+1990,F,9,National University of Singapore,8107.0
+1990,MF,9,National University of Singapore,15193.0
+1991,F,9,National University of Singapore,7972.0
+1991,MF,9,National University of Singapore,14597.0
+1992,F,9,National University of Singapore,8096.0
+1992,MF,9,National University of Singapore,14922.0
+1993,F,9,National University of Singapore,8276.0
+1993,MF,9,National University of Singapore,15395.0
+1994,F,9,National University of Singapore,8644.0
+1994,MF,9,National University of Singapore,16137.0
+1995,F,9,National University of Singapore,9172.0
+1995,MF,9,National University of Singapore,16984.0
+1996,F,9,National University of Singapore,9663.0
+1996,MF,9,National University of Singapore,17669.0
+1997,F,9,National University of Singapore,10063.0
+1997,MF,9,National University of Singapore,18174.0
+1998,F,9,National University of Singapore,10326.0
+1998,MF,9,National University of Singapore,18791.0
+1999,F,9,National University of Singapore,10814.0
+1999,MF,9,National University of Singapore,19873.0
+2000,F,9,National University of Singapore,11341.0
+2000,MF,9,National University of Singapore,21233.0
+2001,F,9,National University of Singapore,11781.0
+2001,MF,9,National University of Singapore,22172.0
+2002,F,9,National University of Singapore,11653.0
+2002,MF,9,National University of Singapore,22169.0
+2003,F,9,National University of Singapore,11036.0
+2003,MF,9,National University of Singapore,22149.0
+2004,F,9,National University of Singapore,11372.0
+2004,MF,9,National University of Singapore,21781.0
+2005,F,9,National University of Singapore,11326.0
+2005,MF,9,National University of Singapore,22105.0
+2006,F,9,National University of Singapore,11766.0
+2006,MF,9,National University of Singapore,22836.0
+2007,F,9,National University of Singapore,12396.0
+2007,MF,9,National University of Singapore,23578.0
+2008,F,9,National University of Singapore,12663.0
+2008,MF,9,National University of Singapore,24086.0
+2009,F,9,National University of Singapore,12944.0
+2009,MF,9,National University of Singapore,24798.0
+2010,F,9,National University of Singapore,13067.0
+2010,MF,9,National University of Singapore,25189.0
+2011,F,9,National University of Singapore,13066.0
+2011,MF,9,National University of Singapore,25513.0
+2012,F,9,National University of Singapore,13295.0
+2012,MF,9,National University of Singapore,25979.0
+2013,F,9,National University of Singapore,13532.0
+2013,MF,9,National University of Singapore,26156.0
+2014,F,9,National University of Singapore,14042.0
+2014,MF,9,National University of Singapore,26797.0
+2015,F,9,National University of Singapore,14423.0
+2015,MF,9,National University of Singapore,27288.0
+2016,F,9,National University of Singapore,14617.0
+2016,MF,9,National University of Singapore,27702.0
+2017,F,9,National University of Singapore,14600.0
+2017,MF,9,National University of Singapore,28134.0
+2018,F,9,National University of Singapore,14981.0
+2018,MF,9,National University of Singapore,29037.0
+2019,F,9,National University of Singapore,15440.0
+2019,MF,9,National University of Singapore,30033.0
+2020,F,9,National University of Singapore,15262.0
+2020,MF,9,National University of Singapore,30420.0
+2021,F,9,National University of Singapore,15693.0
+2021,MF,9,National University of Singapore,31191.0
+2022,F,9,National University of Singapore,15405.0
+2022,MF,9,National University of Singapore,30842.0
+2023,F,9,National University of Singapore,14776.0
+2023,MF,9,National University of Singapore,30467.0
+2024,F,9,National University of Singapore,14531.0
+2024,MF,9,National University of Singapore,30176.0
+1982,F,7,Nanyang Technological University,57.0
+1982,MF,7,Nanyang Technological University,582.0
+1983,F,7,Nanyang Technological University,120.0
+1983,MF,7,Nanyang Technological University,1267.0
+1984,F,7,Nanyang Technological University,230.0
+1984,MF,7,Nanyang Technological University,1945.0
+1985,F,7,Nanyang Technological University,253.0
+1985,MF,7,Nanyang Technological University,2078.0
+1986,F,7,Nanyang Technological University,302.0
+1986,MF,7,Nanyang Technological University,2202.0
+1987,F,7,Nanyang Technological University,1486.0
+1987,MF,7,Nanyang Technological University,3940.0
+1988,F,7,Nanyang Technological University,1750.0
+1988,MF,7,Nanyang Technological University,4400.0
+1989,F,7,Nanyang Technological University,2123.0
+1989,MF,7,Nanyang Technological University,5475.0
+1990,F,7,Nanyang Technological University,2689.0
+1990,MF,7,Nanyang Technological University,6812.0
+1991,F,7,Nanyang Technological University,3139.0
+1991,MF,7,Nanyang Technological University,8712.0
+1992,F,7,Nanyang Technological University,3543.0
+1992,MF,7,Nanyang Technological University,9900.0
+1993,F,7,Nanyang Technological University,3802.0
+1993,MF,7,Nanyang Technological University,10410.0
+1994,F,7,Nanyang Technological University,4220.0
+1994,MF,7,Nanyang Technological University,11052.0
+1995,F,7,Nanyang Technological University,4741.0
+1995,MF,7,Nanyang Technological University,11545.0
+1996,F,7,Nanyang Technological University,5030.0
+1996,MF,7,Nanyang Technological University,12186.0
+1997,F,7,Nanyang Technological University,5312.0
+1997,MF,7,Nanyang Technological University,12760.0
+1998,F,7,Nanyang Technological University,5494.0
+1998,MF,7,Nanyang Technological University,13318.0
+1999,F,7,Nanyang Technological University,5740.0
+1999,MF,7,Nanyang Technological University,13849.0
+2000,F,7,Nanyang Technological University,6223.0
+2000,MF,7,Nanyang Technological University,14583.0
+2001,F,7,Nanyang Technological University,6504.0
+2001,MF,7,Nanyang Technological University,15008.0
+2002,F,7,Nanyang Technological University,6822.0
+2002,MF,7,Nanyang Technological University,15598.0
+2003,F,7,Nanyang Technological University,6830.0
+2003,MF,7,Nanyang Technological University,15764.0
+2004,F,7,Nanyang Technological University,7469.0
+2004,MF,7,Nanyang Technological University,16837.0
+2005,F,7,Nanyang Technological University,8094.0
+2005,MF,7,Nanyang Technological University,17777.0
+2006,F,7,Nanyang Technological University,8797.0
+2006,MF,7,Nanyang Technological University,19114.0
+2007,F,7,Nanyang Technological University,9769.0
+2007,MF,7,Nanyang Technological University,20206.0
+2008,F,7,Nanyang Technological University,10409.0
+2008,MF,7,Nanyang Technological University,21097.0
+2009,F,7,Nanyang Technological University,11105.0
+2009,MF,7,Nanyang Technological University,22450.0
+2010,F,7,Nanyang Technological University,11389.0
+2010,MF,7,Nanyang Technological University,22862.0
+2011,F,7,Nanyang Technological University,11354.0
+2011,MF,7,Nanyang Technological University,23040.0
+2012,F,7,Nanyang Technological University,11386.0
+2012,MF,7,Nanyang Technological University,22862.0
+2013,F,7,Nanyang Technological University,11517.0
+2013,MF,7,Nanyang Technological University,22777.0
+2014,F,7,Nanyang Technological University,11623.0
+2014,MF,7,Nanyang Technological University,23021.0
+2015,F,7,Nanyang Technological University,11860.0
+2015,MF,7,Nanyang Technological University,23512.0
+2016,F,7,Nanyang Technological University,11633.0
+2016,MF,7,Nanyang Technological University,23495.0
+2017,F,7,Nanyang Technological University,11079.0
+2017,MF,7,Nanyang Technological University,22934.0
+2018,F,7,Nanyang Technological University,10896.0
+2018,MF,7,Nanyang Technological University,22813.0
+2019,F,7,Nanyang Technological University,11120.0
+2019,MF,7,Nanyang Technological University,23063.0
+2020,F,7,Nanyang Technological University,11499.0
+2020,MF,7,Nanyang Technological University,23758.0
+2021,F,7,Nanyang Technological University,11352.0
+2021,MF,7,Nanyang Technological University,24074.0
+2022,F,7,Nanyang Technological University,11085.0
+2022,MF,7,Nanyang Technological University,23876.0
+2023,F,7,Nanyang Technological University,11081.0
+2023,MF,7,Nanyang Technological University,24117.0
+2024,F,7,Nanyang Technological University,11190.0
+2024,MF,7,Nanyang Technological University,24228.0
+2000,F,13,Singapore Management University,212.0
+2000,MF,13,Singapore Management University,305.0
+2001,F,13,Singapore Management University,579.0
+2001,MF,13,Singapore Management University,803.0
+2002,F,13,Singapore Management University,974.0
+2002,MF,13,Singapore Management University,1389.0
+2003,F,13,Singapore Management University,1469.0
+2003,MF,13,Singapore Management University,2182.0
+2004,F,13,Singapore Management University,1991.0
+2004,MF,13,Singapore Management University,3010.0
+2005,F,13,Singapore Management University,2239.0
+2005,MF,13,Singapore Management University,3781.0
+2006,F,13,Singapore Management University,2429.0
+2006,MF,13,Singapore Management University,4259.0
+2007,F,13,Singapore Management University,2758.0
+2007,MF,13,Singapore Management University,5178.0
+2008,F,13,Singapore Management University,2993.0
+2008,MF,13,Singapore Management University,5721.0
+2009,F,13,Singapore Management University,3295.0
+2009,MF,13,Singapore Management University,6331.0
+2010,F,13,Singapore Management University,3525.0
+2010,MF,13,Singapore Management University,6721.0
+2011,F,13,Singapore Management University,3523.0
+2011,MF,13,Singapore Management University,6853.0
+2012,F,13,Singapore Management University,3684.0
+2012,MF,13,Singapore Management University,7108.0
+2013,F,13,Singapore Management University,3789.0
+2013,MF,13,Singapore Management University,7297.0
+2014,F,13,Singapore Management University,3883.0
+2014,MF,13,Singapore Management University,7515.0
+2015,F,13,Singapore Management University,4062.0
+2015,MF,13,Singapore Management University,7740.0
+2016,F,13,Singapore Management University,4047.0
+2016,MF,13,Singapore Management University,7827.0
+2017,F,13,Singapore Management University,4193.0
+2017,MF,13,Singapore Management University,7979.0
+2018,F,13,Singapore Management University,4486.0
+2018,MF,13,Singapore Management University,8182.0
+2019,F,13,Singapore Management University,4855.0
+2019,MF,13,Singapore Management University,8656.0
+2020,F,13,Singapore Management University,5276.0
+2020,MF,13,Singapore Management University,9144.0
+2021,F,13,Singapore Management University,5512.0
+2021,MF,13,Singapore Management University,9580.0
+2022,F,13,Singapore Management University,5512.0
+2022,MF,13,Singapore Management University,9883.0
+2023,F,13,Singapore Management University,5670.0
+2023,MF,13,Singapore Management University,10129.0
+2024,F,13,Singapore Management University,5493.0
+2024,MF,13,Singapore Management University,10137.0
+2010,F,12,Singapore Institute of Technology,275.0
+2010,MF,12,Singapore Institute of Technology,523.0
+2011,F,12,Singapore Institute of Technology,732.0
+2011,MF,12,Singapore Institute of Technology,1416.0
+2012,F,12,Singapore Institute of Technology,1246.0
+2012,MF,12,Singapore Institute of Technology,2587.0
+2013,F,12,Singapore Institute of Technology,1317.0
+2013,MF,12,Singapore Institute of Technology,3051.0
+2014,F,12,Singapore Institute of Technology,1482.0
+2014,MF,12,Singapore Institute of Technology,3557.0
+2015,F,12,Singapore Institute of Technology,1693.0
+2015,MF,12,Singapore Institute of Technology,4039.0
+2016,F,12,Singapore Institute of Technology,2306.0
+2016,MF,12,Singapore Institute of Technology,5230.0
+2017,F,12,Singapore Institute of Technology,2626.0
+2017,MF,12,Singapore Institute of Technology,6138.0
+2018,F,12,Singapore Institute of Technology,2905.0
+2018,MF,12,Singapore Institute of Technology,6951.0
+2019,F,12,Singapore Institute of Technology,3128.0
+2019,MF,12,Singapore Institute of Technology,7714.0
+2020,F,12,Singapore Institute of Technology,3423.0
+2020,MF,12,Singapore Institute of Technology,8201.0
+2021,F,12,Singapore Institute of Technology,3725.0
+2021,MF,12,Singapore Institute of Technology,9015.0
+2022,F,12,Singapore Institute of Technology,4062.0
+2022,MF,12,Singapore Institute of Technology,9688.0
+2023,F,12,Singapore Institute of Technology,4416.0
+2023,MF,12,Singapore Institute of Technology,10380.0
+2024,F,12,Singapore Institute of Technology,4417.0
+2024,MF,12,Singapore Institute of Technology,10811.0
+2012,F,16,Singapore University of Technology and Design,149.0
+2012,MF,16,Singapore University of Technology and Design,327.0
+2013,F,16,Singapore University of Technology and Design,249.0
+2013,MF,16,Singapore University of Technology and Design,583.0
+2014,F,16,Singapore University of Technology and Design,363.0
+2014,MF,16,Singapore University of Technology and Design,886.0
+2015,F,16,Singapore University of Technology and Design,522.0
+2015,MF,16,Singapore University of Technology and Design,1235.0
+2016,F,16,Singapore University of Technology and Design,551.0
+2016,MF,16,Singapore University of Technology and Design,1381.0
+2017,F,16,Singapore University of Technology and Design,603.0
+2017,MF,16,Singapore University of Technology and Design,1545.0
+2018,F,16,Singapore University of Technology and Design,626.0
+2018,MF,16,Singapore University of Technology and Design,1658.0
+2019,F,16,Singapore University of Technology and Design,624.0
+2019,MF,16,Singapore University of Technology and Design,1730.0
+2020,F,16,Singapore University of Technology and Design,518.0
+2020,MF,16,Singapore University of Technology and Design,1406.0
+2021,F,16,Singapore University of Technology and Design,534.0
+2021,MF,16,Singapore University of Technology and Design,1429.0
+2022,F,16,Singapore University of Technology and Design,502.0
+2022,MF,16,Singapore University of Technology and Design,1409.0
+2023,F,16,Singapore University of Technology and Design,706.0
+2023,MF,16,Singapore University of Technology and Design,1915.0
+2024,F,16,Singapore University of Technology and Design,699.0
+2024,MF,16,Singapore University of Technology and Design,1969.0
+2014,F,15,Singapore University of Social Sciences,145.0
+2014,MF,15,Singapore University of Social Sciences,217.0
+2015,F,15,Singapore University of Social Sciences,330.0
+2015,MF,15,Singapore University of Social Sciences,489.0
+2016,F,15,Singapore University of Social Sciences,609.0
+2016,MF,15,Singapore University of Social Sciences,896.0
+2017,F,15,Singapore University of Social Sciences,1011.0
+2017,MF,15,Singapore University of Social Sciences,1451.0
+2018,F,15,Singapore University of Social Sciences,1399.0
+2018,MF,15,Singapore University of Social Sciences,2049.0
+2019,F,15,Singapore University of Social Sciences,1683.0
+2019,MF,15,Singapore University of Social Sciences,2601.0
+2020,F,15,Singapore University of Social Sciences,2014.0
+2020,MF,15,Singapore University of Social Sciences,3153.0
+2021,F,15,Singapore University of Social Sciences,2312.0
+2021,MF,15,Singapore University of Social Sciences,3656.0
+2022,F,15,Singapore University of Social Sciences,2394.0
+2022,MF,15,Singapore University of Social Sciences,3910.0
+2023,F,15,Singapore University of Social Sciences,2459.0
+2023,MF,15,Singapore University of Social Sciences,3998.0
+2024,F,15,Singapore University of Social Sciences,2570.0
+2024,MF,15,Singapore University of Social Sciences,4154.0
+1982,F,8,National Institute of Education,808.0
+1982,MF,8,National Institute of Education,1000.0
+1983,F,8,National Institute of Education,853.0
+1983,MF,8,National Institute of Education,1078.0
+1984,F,8,National Institute of Education,605.0
+1984,MF,8,National Institute of Education,776.0
+1985,F,8,National Institute of Education,922.0
+1985,MF,8,National Institute of Education,1166.0
+1986,F,8,National Institute of Education,1093.0
+1986,MF,8,National Institute of Education,1331.0
+1987,F,8,National Institute of Education,1085.0
+1987,MF,8,National Institute of Education,1306.0
+1988,F,8,National Institute of Education,849.0
+1988,MF,8,National Institute of Education,1058.0
+1989,F,8,National Institute of Education,1032.0
+1989,MF,8,National Institute of Education,1337.0
+1990,F,8,National Institute of Education,1212.0
+1990,MF,8,National Institute of Education,1577.0
+1991,F,8,National Institute of Education,1336.0
+1991,MF,8,National Institute of Education,1676.0
+1992,F,8,National Institute of Education,1189.0
+1992,MF,8,National Institute of Education,1559.0
+1993,F,8,National Institute of Education,1287.0
+1993,MF,8,National Institute of Education,1700.0
+1994,F,8,National Institute of Education,1019.0
+1994,MF,8,National Institute of Education,1394.0
+1995,F,8,National Institute of Education,997.0
+1995,MF,8,National Institute of Education,1341.0
+1996,F,8,National Institute of Education,1507.0
+1996,MF,8,National Institute of Education,2040.0
+1997,F,8,National Institute of Education,1528.0
+1997,MF,8,National Institute of Education,2169.0
+1998,F,8,National Institute of Education,1572.0
+1998,MF,8,National Institute of Education,2196.0
+1999,F,8,National Institute of Education,2333.0
+1999,MF,8,National Institute of Education,3299.0
+2000,F,8,National Institute of Education,2247.0
+2000,MF,8,National Institute of Education,3072.0
+2001,F,8,National Institute of Education,2292.0
+2001,MF,8,National Institute of Education,3095.0
+2002,F,8,National Institute of Education,2455.0
+2002,MF,8,National Institute of Education,3368.0
+2003,F,8,National Institute of Education,2080.0
+2003,MF,8,National Institute of Education,2953.0
+2004,F,8,National Institute of Education,1550.0
+2004,MF,8,National Institute of Education,2282.0
+2005,F,8,National Institute of Education,1940.0
+2005,MF,8,National Institute of Education,2881.0
+2006,F,8,National Institute of Education,1998.0
+2006,MF,8,National Institute of Education,2938.0
+2007,F,8,National Institute of Education,1878.0
+2007,MF,8,National Institute of Education,2725.0
+2008,F,8,National Institute of Education,1758.0
+2008,MF,8,National Institute of Education,2581.0
+2009,F,8,National Institute of Education,1896.0
+2009,MF,8,National Institute of Education,2804.0
+2010,F,8,National Institute of Education,1886.0
+2010,MF,8,National Institute of Education,2816.0
+2011,F,8,National Institute of Education,1759.0
+2011,MF,8,National Institute of Education,2579.0
+2012,F,8,National Institute of Education,1624.0
+2012,MF,8,National Institute of Education,2445.0
+2013,F,8,National Institute of Education,1216.0
+2013,MF,8,National Institute of Education,1838.0
+2014,F,8,National Institute of Education,1313.0
+2014,MF,8,National Institute of Education,1913.0
+2015,F,8,National Institute of Education,1015.0
+2015,MF,8,National Institute of Education,1549.0
+2016,F,8,National Institute of Education,1010.0
+2016,MF,8,National Institute of Education,1443.0
+2017,F,8,National Institute of Education,804.0
+2017,MF,8,National Institute of Education,1122.0
+2018,F,8,National Institute of Education,924.0
+2018,MF,8,National Institute of Education,1309.0
+2019,F,8,National Institute of Education,948.0
+2019,MF,8,National Institute of Education,1323.0
+2020,F,8,National Institute of Education,852.0
+2020,MF,8,National Institute of Education,1206.0
+2021,F,8,National Institute of Education,781.0
+2021,MF,8,National Institute of Education,1154.0
+2022,F,8,National Institute of Education,908.0
+2022,MF,8,National Institute of Education,1319.0
+2023,F,8,National Institute of Education,988.0
+2023,MF,8,National Institute of Education,1394.0
+2024,F,8,National Institute of Education,1169.0
+2024,MF,8,National Institute of Education,1635.0
+1982,F,14,Singapore Polytechnic,1069.0
+1982,MF,14,Singapore Polytechnic,5339.0
+1983,F,14,Singapore Polytechnic,1318.0
+1983,MF,14,Singapore Polytechnic,6136.0
+1984,F,14,Singapore Polytechnic,1679.0
+1984,MF,14,Singapore Polytechnic,7129.0
+1985,F,14,Singapore Polytechnic,1924.0
+1985,MF,14,Singapore Polytechnic,7894.0
+1986,F,14,Singapore Polytechnic,2041.0
+1986,MF,14,Singapore Polytechnic,8099.0
+1987,F,14,Singapore Polytechnic,2514.0
+1987,MF,14,Singapore Polytechnic,9193.0
+1988,F,14,Singapore Polytechnic,2905.0
+1988,MF,14,Singapore Polytechnic,9709.0
+1989,F,14,Singapore Polytechnic,3459.0
+1989,MF,14,Singapore Polytechnic,10620.0
+1990,F,14,Singapore Polytechnic,3878.0
+1990,MF,14,Singapore Polytechnic,11348.0
+1991,F,14,Singapore Polytechnic,4498.0
+1991,MF,14,Singapore Polytechnic,12327.0
+1992,F,14,Singapore Polytechnic,5073.0
+1992,MF,14,Singapore Polytechnic,13257.0
+1993,F,14,Singapore Polytechnic,5297.0
+1993,MF,14,Singapore Polytechnic,13578.0
+1994,F,14,Singapore Polytechnic,5361.0
+1994,MF,14,Singapore Polytechnic,13865.0
+1995,F,14,Singapore Polytechnic,5202.0
+1995,MF,14,Singapore Polytechnic,14019.0
+1996,F,14,Singapore Polytechnic,5180.0
+1996,MF,14,Singapore Polytechnic,13912.0
+1997,F,14,Singapore Polytechnic,5143.0
+1997,MF,14,Singapore Polytechnic,13755.0
+1998,F,14,Singapore Polytechnic,5316.0
+1998,MF,14,Singapore Polytechnic,13695.0
+1999,F,14,Singapore Polytechnic,5352.0
+1999,MF,14,Singapore Polytechnic,13581.0
+2000,F,14,Singapore Polytechnic,5408.0
+2000,MF,14,Singapore Polytechnic,13459.0
+2001,F,14,Singapore Polytechnic,5521.0
+2001,MF,14,Singapore Polytechnic,13754.0
+2002,F,14,Singapore Polytechnic,5670.0
+2002,MF,14,Singapore Polytechnic,14271.0
+2003,F,14,Singapore Polytechnic,5562.0
+2003,MF,14,Singapore Polytechnic,14371.0
+2004,F,14,Singapore Polytechnic,5233.0
+2004,MF,14,Singapore Polytechnic,13709.0
+2005,F,14,Singapore Polytechnic,5019.0
+2005,MF,14,Singapore Polytechnic,13353.0
+2006,F,14,Singapore Polytechnic,5084.0
+2006,MF,14,Singapore Polytechnic,13656.0
+2007,F,14,Singapore Polytechnic,5249.0
+2007,MF,14,Singapore Polytechnic,14399.0
+2008,F,14,Singapore Polytechnic,5605.0
+2008,MF,14,Singapore Polytechnic,14986.0
+2009,F,14,Singapore Polytechnic,6034.0
+2009,MF,14,Singapore Polytechnic,15523.0
+2010,F,14,Singapore Polytechnic,6453.0
+2010,MF,14,Singapore Polytechnic,15928.0
+2011,F,14,Singapore Polytechnic,6432.0
+2011,MF,14,Singapore Polytechnic,15949.0
+2012,F,14,Singapore Polytechnic,6327.0
+2012,MF,14,Singapore Polytechnic,15972.0
+2013,F,14,Singapore Polytechnic,6167.0
+2013,MF,14,Singapore Polytechnic,15878.0
+2014,F,14,Singapore Polytechnic,6175.0
+2014,MF,14,Singapore Polytechnic,15905.0
+2015,F,14,Singapore Polytechnic,6022.0
+2015,MF,14,Singapore Polytechnic,15297.0
+2016,F,14,Singapore Polytechnic,5766.0
+2016,MF,14,Singapore Polytechnic,14671.0
+2017,F,14,Singapore Polytechnic,5611.0
+2017,MF,14,Singapore Polytechnic,14298.0
+2018,F,14,Singapore Polytechnic,5559.0
+2018,MF,14,Singapore Polytechnic,14337.0
+2019,F,14,Singapore Polytechnic,5520.0
+2019,MF,14,Singapore Polytechnic,14209.0
+2020,F,14,Singapore Polytechnic,5238.0
+2020,MF,14,Singapore Polytechnic,13568.0
+2021,F,14,Singapore Polytechnic,4972.0
+2021,MF,14,Singapore Polytechnic,12880.0
+2022,F,14,Singapore Polytechnic,4800.0
+2022,MF,14,Singapore Polytechnic,12391.0
+2023,F,14,Singapore Polytechnic,4984.0
+2023,MF,14,Singapore Polytechnic,12590.0
+2024,F,14,Singapore Polytechnic,5079.0
+2024,MF,14,Singapore Polytechnic,12508.0
+1982,F,10,Ngee Ann Polytechnic,1153.0
+1982,MF,10,Ngee Ann Polytechnic,3660.0
+1983,F,10,Ngee Ann Polytechnic,1650.0
+1983,MF,10,Ngee Ann Polytechnic,4825.0
+1984,F,10,Ngee Ann Polytechnic,2374.0
+1984,MF,10,Ngee Ann Polytechnic,6919.0
+1985,F,10,Ngee Ann Polytechnic,2993.0
+1985,MF,10,Ngee Ann Polytechnic,8516.0
+1986,F,10,Ngee Ann Polytechnic,3470.0
+1986,MF,10,Ngee Ann Polytechnic,9617.0
+1987,F,10,Ngee Ann Polytechnic,3910.0
+1987,MF,10,Ngee Ann Polytechnic,10237.0
+1988,F,10,Ngee Ann Polytechnic,4037.0
+1988,MF,10,Ngee Ann Polytechnic,10448.0
+1989,F,10,Ngee Ann Polytechnic,4477.0
+1989,MF,10,Ngee Ann Polytechnic,11341.0
+1990,F,10,Ngee Ann Polytechnic,4817.0
+1990,MF,10,Ngee Ann Polytechnic,11995.0
+1991,F,10,Ngee Ann Polytechnic,5316.0
+1991,MF,10,Ngee Ann Polytechnic,12759.0
+1992,F,10,Ngee Ann Polytechnic,5527.0
+1992,MF,10,Ngee Ann Polytechnic,13330.0
+1993,F,10,Ngee Ann Polytechnic,5473.0
+1993,MF,10,Ngee Ann Polytechnic,13353.0
+1994,F,10,Ngee Ann Polytechnic,5624.0
+1994,MF,10,Ngee Ann Polytechnic,13637.0
+1995,F,10,Ngee Ann Polytechnic,5858.0
+1995,MF,10,Ngee Ann Polytechnic,14249.0
+1996,F,10,Ngee Ann Polytechnic,6113.0
+1996,MF,10,Ngee Ann Polytechnic,14480.0
+1997,F,10,Ngee Ann Polytechnic,6169.0
+1997,MF,10,Ngee Ann Polytechnic,14760.0
+1998,F,10,Ngee Ann Polytechnic,6001.0
+1998,MF,10,Ngee Ann Polytechnic,14300.0
+1999,F,10,Ngee Ann Polytechnic,6211.0
+1999,MF,10,Ngee Ann Polytechnic,14433.0
+2000,F,10,Ngee Ann Polytechnic,6419.0
+2000,MF,10,Ngee Ann Polytechnic,14378.0
+2001,F,10,Ngee Ann Polytechnic,6623.0
+2001,MF,10,Ngee Ann Polytechnic,14317.0
+2002,F,10,Ngee Ann Polytechnic,6626.0
+2002,MF,10,Ngee Ann Polytechnic,13989.0
+2003,F,10,Ngee Ann Polytechnic,6534.0
+2003,MF,10,Ngee Ann Polytechnic,13690.0
+2004,F,10,Ngee Ann Polytechnic,6347.0
+2004,MF,10,Ngee Ann Polytechnic,13417.0
+2005,F,10,Ngee Ann Polytechnic,6500.0
+2005,MF,10,Ngee Ann Polytechnic,13715.0
+2006,F,10,Ngee Ann Polytechnic,6719.0
+2006,MF,10,Ngee Ann Polytechnic,14258.0
+2007,F,10,Ngee Ann Polytechnic,7007.0
+2007,MF,10,Ngee Ann Polytechnic,14687.0
+2008,F,10,Ngee Ann Polytechnic,7214.0
+2008,MF,10,Ngee Ann Polytechnic,15123.0
+2009,F,10,Ngee Ann Polytechnic,7436.0
+2009,MF,10,Ngee Ann Polytechnic,15417.0
+2010,F,10,Ngee Ann Polytechnic,7655.0
+2010,MF,10,Ngee Ann Polytechnic,15942.0
+2011,F,10,Ngee Ann Polytechnic,7703.0
+2011,MF,10,Ngee Ann Polytechnic,16139.0
+2012,F,10,Ngee Ann Polytechnic,7788.0
+2012,MF,10,Ngee Ann Polytechnic,16430.0
+2013,F,10,Ngee Ann Polytechnic,7866.0
+2013,MF,10,Ngee Ann Polytechnic,16581.0
+2014,F,10,Ngee Ann Polytechnic,7758.0
+2014,MF,10,Ngee Ann Polytechnic,16227.0
+2015,F,10,Ngee Ann Polytechnic,7465.0
+2015,MF,10,Ngee Ann Polytechnic,15611.0
+2016,F,10,Ngee Ann Polytechnic,7243.0
+2016,MF,10,Ngee Ann Polytechnic,14866.0
+2017,F,10,Ngee Ann Polytechnic,7304.0
+2017,MF,10,Ngee Ann Polytechnic,14599.0
+2018,F,10,Ngee Ann Polytechnic,7469.0
+2018,MF,10,Ngee Ann Polytechnic,14543.0
+2019,F,10,Ngee Ann Polytechnic,7431.0
+2019,MF,10,Ngee Ann Polytechnic,14233.0
+2020,F,10,Ngee Ann Polytechnic,7205.0
+2020,MF,10,Ngee Ann Polytechnic,13637.0
+2021,F,10,Ngee Ann Polytechnic,6943.0
+2021,MF,10,Ngee Ann Polytechnic,12996.0
+2022,F,10,Ngee Ann Polytechnic,6735.0
+2022,MF,10,Ngee Ann Polytechnic,12500.0
+2023,F,10,Ngee Ann Polytechnic,6620.0
+2023,MF,10,Ngee Ann Polytechnic,12397.0
+2024,F,10,Ngee Ann Polytechnic,6738.0
+2024,MF,10,Ngee Ann Polytechnic,12578.0
+1990,F,17,Temasek Polytechnic,552.0
+1990,MF,17,Temasek Polytechnic,735.0
+1991,F,17,Temasek Polytechnic,1006.0
+1991,MF,17,Temasek Polytechnic,1472.0
+1992,F,17,Temasek Polytechnic,1490.0
+1992,MF,17,Temasek Polytechnic,2268.0
+1993,F,17,Temasek Polytechnic,1826.0
+1993,MF,17,Temasek Polytechnic,3107.0
+1994,F,17,Temasek Polytechnic,2156.0
+1994,MF,17,Temasek Polytechnic,3854.0
+1995,F,17,Temasek Polytechnic,3026.0
+1995,MF,17,Temasek Polytechnic,5443.0
+1996,F,17,Temasek Polytechnic,4076.0
+1996,MF,17,Temasek Polytechnic,7681.0
+1997,F,17,Temasek Polytechnic,5157.0
+1997,MF,17,Temasek Polytechnic,9806.0
+1998,F,17,Temasek Polytechnic,5942.0
+1998,MF,17,Temasek Polytechnic,11462.0
+1999,F,17,Temasek Polytechnic,6300.0
+1999,MF,17,Temasek Polytechnic,12230.0
+2000,F,17,Temasek Polytechnic,6446.0
+2000,MF,17,Temasek Polytechnic,12733.0
+2001,F,17,Temasek Polytechnic,6501.0
+2001,MF,17,Temasek Polytechnic,13143.0
+2002,F,17,Temasek Polytechnic,6579.0
+2002,MF,17,Temasek Polytechnic,13324.0
+2003,F,17,Temasek Polytechnic,6462.0
+2003,MF,17,Temasek Polytechnic,13117.0
+2004,F,17,Temasek Polytechnic,6302.0
+2004,MF,17,Temasek Polytechnic,12782.0
+2005,F,17,Temasek Polytechnic,6776.0
+2005,MF,17,Temasek Polytechnic,13582.0
+2006,F,17,Temasek Polytechnic,7236.0
+2006,MF,17,Temasek Polytechnic,14568.0
+2007,F,17,Temasek Polytechnic,7541.0
+2007,MF,17,Temasek Polytechnic,15243.0
+2008,F,17,Temasek Polytechnic,7587.0
+2008,MF,17,Temasek Polytechnic,15615.0
+2009,F,17,Temasek Polytechnic,7676.0
+2009,MF,17,Temasek Polytechnic,15791.0
+2010,F,17,Temasek Polytechnic,7804.0
+2010,MF,17,Temasek Polytechnic,15933.0
+2011,F,17,Temasek Polytechnic,7894.0
+2011,MF,17,Temasek Polytechnic,16020.0
+2012,F,17,Temasek Polytechnic,7855.0
+2012,MF,17,Temasek Polytechnic,16005.0
+2013,F,17,Temasek Polytechnic,7934.0
+2013,MF,17,Temasek Polytechnic,16250.0
+2014,F,17,Temasek Polytechnic,7900.0
+2014,MF,17,Temasek Polytechnic,16138.0
+2015,F,17,Temasek Polytechnic,7585.0
+2015,MF,17,Temasek Polytechnic,15425.0
+2016,F,17,Temasek Polytechnic,7115.0
+2016,MF,17,Temasek Polytechnic,14662.0
+2017,F,17,Temasek Polytechnic,6802.0
+2017,MF,17,Temasek Polytechnic,14239.0
+2018,F,17,Temasek Polytechnic,6688.0
+2018,MF,17,Temasek Polytechnic,14248.0
+2019,F,17,Temasek Polytechnic,6718.0
+2019,MF,17,Temasek Polytechnic,14142.0
+2020,F,17,Temasek Polytechnic,6382.0
+2020,MF,17,Temasek Polytechnic,13535.0
+2021,F,17,Temasek Polytechnic,6044.0
+2021,MF,17,Temasek Polytechnic,12984.0
+2022,F,17,Temasek Polytechnic,5826.0
+2022,MF,17,Temasek Polytechnic,12481.0
+2023,F,17,Temasek Polytechnic,5971.0
+2023,MF,17,Temasek Polytechnic,12462.0
+2024,F,17,Temasek Polytechnic,6159.0
+2024,MF,17,Temasek Polytechnic,12546.0
+1992,F,6,Nanyang Polytechnic,580.0
+1992,MF,6,Nanyang Polytechnic,699.0
+1993,F,6,Nanyang Polytechnic,1946.0
+1993,MF,6,Nanyang Polytechnic,3944.0
+1994,F,6,Nanyang Polytechnic,3199.0
+1994,MF,6,Nanyang Polytechnic,5785.0
+1995,F,6,Nanyang Polytechnic,4066.0
+1995,MF,6,Nanyang Polytechnic,7291.0
+1996,F,6,Nanyang Polytechnic,4381.0
+1996,MF,6,Nanyang Polytechnic,7764.0
+1997,F,6,Nanyang Polytechnic,4620.0
+1997,MF,6,Nanyang Polytechnic,8271.0
+1998,F,6,Nanyang Polytechnic,5129.0
+1998,MF,6,Nanyang Polytechnic,9277.0
+1999,F,6,Nanyang Polytechnic,5647.0
+1999,MF,6,Nanyang Polytechnic,10514.0
+2000,F,6,Nanyang Polytechnic,5989.0
+2000,MF,6,Nanyang Polytechnic,11463.0
+2001,F,6,Nanyang Polytechnic,6379.0
+2001,MF,6,Nanyang Polytechnic,12385.0
+2002,F,6,Nanyang Polytechnic,6892.0
+2002,MF,6,Nanyang Polytechnic,13105.0
+2003,F,6,Nanyang Polytechnic,7456.0
+2003,MF,6,Nanyang Polytechnic,13754.0
+2004,F,6,Nanyang Polytechnic,7875.0
+2004,MF,6,Nanyang Polytechnic,14233.0
+2005,F,6,Nanyang Polytechnic,8010.0
+2005,MF,6,Nanyang Polytechnic,14643.0
+2006,F,6,Nanyang Polytechnic,7913.0
+2006,MF,6,Nanyang Polytechnic,15001.0
+2007,F,6,Nanyang Polytechnic,7732.0
+2007,MF,6,Nanyang Polytechnic,14874.0
+2008,F,6,Nanyang Polytechnic,7866.0
+2008,MF,6,Nanyang Polytechnic,15225.0
+2009,F,6,Nanyang Polytechnic,8150.0
+2009,MF,6,Nanyang Polytechnic,15656.0
+2010,F,6,Nanyang Polytechnic,8387.0
+2010,MF,6,Nanyang Polytechnic,16183.0
+2011,F,6,Nanyang Polytechnic,8440.0
+2011,MF,6,Nanyang Polytechnic,16408.0
+2012,F,6,Nanyang Polytechnic,8197.0
+2012,MF,6,Nanyang Polytechnic,16076.0
+2013,F,6,Nanyang Polytechnic,8242.0
+2013,MF,6,Nanyang Polytechnic,16266.0
+2014,F,6,Nanyang Polytechnic,8189.0
+2014,MF,6,Nanyang Polytechnic,16092.0
+2015,F,6,Nanyang Polytechnic,8177.0
+2015,MF,6,Nanyang Polytechnic,15842.0
+2016,F,6,Nanyang Polytechnic,7661.0
+2016,MF,6,Nanyang Polytechnic,15035.0
+2017,F,6,Nanyang Polytechnic,7398.0
+2017,MF,6,Nanyang Polytechnic,14734.0
+2018,F,6,Nanyang Polytechnic,7304.0
+2018,MF,6,Nanyang Polytechnic,14715.0
+2019,F,6,Nanyang Polytechnic,7175.0
+2019,MF,6,Nanyang Polytechnic,14522.0
+2020,F,6,Nanyang Polytechnic,6966.0
+2020,MF,6,Nanyang Polytechnic,13968.0
+2021,F,6,Nanyang Polytechnic,6589.0
+2021,MF,6,Nanyang Polytechnic,13268.0
+2022,F,6,Nanyang Polytechnic,6399.0
+2022,MF,6,Nanyang Polytechnic,12815.0
+2023,F,6,Nanyang Polytechnic,6321.0
+2023,MF,6,Nanyang Polytechnic,12758.0
+2024,F,6,Nanyang Polytechnic,6407.0
+2024,MF,6,Nanyang Polytechnic,12787.0
+2003,F,11,Republic Polytechnic,377.0
+2003,MF,11,Republic Polytechnic,821.0
+2004,F,11,Republic Polytechnic,865.0
+2004,MF,11,Republic Polytechnic,1907.0
+2005,F,11,Republic Polytechnic,1759.0
+2005,MF,11,Republic Polytechnic,3587.0
+2006,F,11,Republic Polytechnic,2790.0
+2006,MF,11,Republic Polytechnic,5479.0
+2007,F,11,Republic Polytechnic,4205.0
+2007,MF,11,Republic Polytechnic,8087.0
+2008,F,11,Republic Polytechnic,5257.0
+2008,MF,11,Republic Polytechnic,10188.0
+2009,F,11,Republic Polytechnic,6304.0
+2009,MF,11,Republic Polytechnic,12179.0
+2010,F,11,Republic Polytechnic,6729.0
+2010,MF,11,Republic Polytechnic,13003.0
+2011,F,11,Republic Polytechnic,7209.0
+2011,MF,11,Republic Polytechnic,13927.0
+2012,F,11,Republic Polytechnic,7583.0
+2012,MF,11,Republic Polytechnic,14520.0
+2013,F,11,Republic Polytechnic,7910.0
+2013,MF,11,Republic Polytechnic,14995.0
+2014,F,11,Republic Polytechnic,7914.0
+2014,MF,11,Republic Polytechnic,14952.0
+2015,F,11,Republic Polytechnic,7736.0
+2015,MF,11,Republic Polytechnic,14690.0
+2016,F,11,Republic Polytechnic,7343.0
+2016,MF,11,Republic Polytechnic,13915.0
+2017,F,11,Republic Polytechnic,7022.0
+2017,MF,11,Republic Polytechnic,13566.0
+2018,F,11,Republic Polytechnic,6703.0
+2018,MF,11,Republic Polytechnic,13142.0
+2019,F,11,Republic Polytechnic,6364.0
+2019,MF,11,Republic Polytechnic,12627.0
+2020,F,11,Republic Polytechnic,6064.0
+2020,MF,11,Republic Polytechnic,12225.0
+2021,F,11,Republic Polytechnic,5719.0
+2021,MF,11,Republic Polytechnic,11668.0
+2022,F,11,Republic Polytechnic,5608.0
+2022,MF,11,Republic Polytechnic,11704.0
+2023,F,11,Republic Polytechnic,5501.0
+2023,MF,11,Republic Polytechnic,11587.0
+2024,F,11,Republic Polytechnic,5552.0
+2024,MF,11,Republic Polytechnic,11866.0
+2005,F,3,LASALLE College of the Arts (Diploma),906.0
+2005,MF,3,LASALLE College of the Arts (Diploma),1505.0
+2006,F,3,LASALLE College of the Arts (Diploma),1139.0
+2006,MF,3,LASALLE College of the Arts (Diploma),1904.0
+2007,F,3,LASALLE College of the Arts (Diploma),1228.0
+2007,MF,3,LASALLE College of the Arts (Diploma),1948.0
+2008,F,3,LASALLE College of the Arts (Diploma),1202.0
+2008,MF,3,LASALLE College of the Arts (Diploma),1887.0
+2009,F,3,LASALLE College of the Arts (Diploma),1143.0
+2009,MF,3,LASALLE College of the Arts (Diploma),1771.0
+2010,F,3,LASALLE College of the Arts (Diploma),1137.0
+2010,MF,3,LASALLE College of the Arts (Diploma),1754.0
+2011,F,3,LASALLE College of the Arts (Diploma),1011.0
+2011,MF,3,LASALLE College of the Arts (Diploma),1623.0
+2012,F,3,LASALLE College of the Arts (Diploma),854.0
+2012,MF,3,LASALLE College of the Arts (Diploma),1353.0
+2013,F,3,LASALLE College of the Arts (Diploma),769.0
+2013,MF,3,LASALLE College of the Arts (Diploma),1253.0
+2014,F,3,LASALLE College of the Arts (Diploma),773.0
+2014,MF,3,LASALLE College of the Arts (Diploma),1190.0
+2015,F,3,LASALLE College of the Arts (Diploma),765.0
+2015,MF,3,LASALLE College of the Arts (Diploma),1173.0
+2016,F,3,LASALLE College of the Arts (Diploma),741.0
+2016,MF,3,LASALLE College of the Arts (Diploma),1150.0
+2017,F,3,LASALLE College of the Arts (Diploma),783.0
+2017,MF,3,LASALLE College of the Arts (Diploma),1241.0
+2018,F,3,LASALLE College of the Arts (Diploma),842.0
+2018,MF,3,LASALLE College of the Arts (Diploma),1294.0
+2019,F,3,LASALLE College of the Arts (Diploma),844.0
+2019,MF,3,LASALLE College of the Arts (Diploma),1277.0
+2020,F,3,LASALLE College of the Arts (Diploma),809.0
+2020,MF,3,LASALLE College of the Arts (Diploma),1231.0
+2021,F,3,LASALLE College of the Arts (Diploma),787.0
+2021,MF,3,LASALLE College of the Arts (Diploma),1205.0
+2022,F,3,LASALLE College of the Arts (Diploma),784.0
+2022,MF,3,LASALLE College of the Arts (Diploma),1200.0
+2023,F,3,LASALLE College of the Arts (Diploma),780.0
+2023,MF,3,LASALLE College of the Arts (Diploma),1177.0
+2024,F,3,LASALLE College of the Arts (Diploma),790.0
+2024,MF,3,LASALLE College of the Arts (Diploma),1169.0
+2012,F,2,LASALLE College of the Arts (Degree),771.0
+2012,MF,2,LASALLE College of the Arts (Degree),1081.0
+2013,F,2,LASALLE College of the Arts (Degree),956.0
+2013,MF,2,LASALLE College of the Arts (Degree),1290.0
+2014,F,2,LASALLE College of the Arts (Degree),846.0
+2014,MF,2,LASALLE College of the Arts (Degree),1176.0
+2015,F,2,LASALLE College of the Arts (Degree),905.0
+2015,MF,2,LASALLE College of the Arts (Degree),1262.0
+2016,F,2,LASALLE College of the Arts (Degree),946.0
+2016,MF,2,LASALLE College of the Arts (Degree),1311.0
+2017,F,2,LASALLE College of the Arts (Degree),987.0
+2017,MF,2,LASALLE College of the Arts (Degree),1330.0
+2018,F,2,LASALLE College of the Arts (Degree),981.0
+2018,MF,2,LASALLE College of the Arts (Degree),1339.0
+2019,F,2,LASALLE College of the Arts (Degree),909.0
+2019,MF,2,LASALLE College of the Arts (Degree),1235.0
+2020,F,2,LASALLE College of the Arts (Degree),868.0
+2020,MF,2,LASALLE College of the Arts (Degree),1168.0
+2021,F,2,LASALLE College of the Arts (Degree),865.0
+2021,MF,2,LASALLE College of the Arts (Degree),1166.0
+2022,F,2,LASALLE College of the Arts (Degree),846.0
+2022,MF,2,LASALLE College of the Arts (Degree),1140.0
+2023,F,2,LASALLE College of the Arts (Degree),908.0
+2023,MF,2,LASALLE College of the Arts (Degree),1197.0
+2024,F,2,LASALLE College of the Arts (Degree),961.0
+2024,MF,2,LASALLE College of the Arts (Degree),1241.0
+2005,F,5,Nanyang Academy of Fine Arts (Diploma),1236.0
+2005,MF,5,Nanyang Academy of Fine Arts (Diploma),1933.0
+2006,F,5,Nanyang Academy of Fine Arts (Diploma),1352.0
+2006,MF,5,Nanyang Academy of Fine Arts (Diploma),2083.0
+2007,F,5,Nanyang Academy of Fine Arts (Diploma),1396.0
+2007,MF,5,Nanyang Academy of Fine Arts (Diploma),2114.0
+2008,F,5,Nanyang Academy of Fine Arts (Diploma),1475.0
+2008,MF,5,Nanyang Academy of Fine Arts (Diploma),2190.0
+2009,F,5,Nanyang Academy of Fine Arts (Diploma),1460.0
+2009,MF,5,Nanyang Academy of Fine Arts (Diploma),2144.0
+2010,F,5,Nanyang Academy of Fine Arts (Diploma),1532.0
+2010,MF,5,Nanyang Academy of Fine Arts (Diploma),2269.0
+2011,F,5,Nanyang Academy of Fine Arts (Diploma),1510.0
+2011,MF,5,Nanyang Academy of Fine Arts (Diploma),2217.0
+2012,F,5,Nanyang Academy of Fine Arts (Diploma),1531.0
+2012,MF,5,Nanyang Academy of Fine Arts (Diploma),2225.0
+2013,F,5,Nanyang Academy of Fine Arts (Diploma),1419.0
+2013,MF,5,Nanyang Academy of Fine Arts (Diploma),2037.0
+2014,F,5,Nanyang Academy of Fine Arts (Diploma),1440.0
+2014,MF,5,Nanyang Academy of Fine Arts (Diploma),2022.0
+2015,F,5,Nanyang Academy of Fine Arts (Diploma),1483.0
+2015,MF,5,Nanyang Academy of Fine Arts (Diploma),2106.0
+2016,F,5,Nanyang Academy of Fine Arts (Diploma),1745.0
+2016,MF,5,Nanyang Academy of Fine Arts (Diploma),2390.0
+2017,F,5,Nanyang Academy of Fine Arts (Diploma),1830.0
+2017,MF,5,Nanyang Academy of Fine Arts (Diploma),2537.0
+2018,F,5,Nanyang Academy of Fine Arts (Diploma),1785.0
+2018,MF,5,Nanyang Academy of Fine Arts (Diploma),2484.0
+2019,F,5,Nanyang Academy of Fine Arts (Diploma),1706.0
+2019,MF,5,Nanyang Academy of Fine Arts (Diploma),2377.0
+2020,F,5,Nanyang Academy of Fine Arts (Diploma),1644.0
+2020,MF,5,Nanyang Academy of Fine Arts (Diploma),2312.0
+2021,F,5,Nanyang Academy of Fine Arts (Diploma),1523.0
+2021,MF,5,Nanyang Academy of Fine Arts (Diploma),2117.0
+2022,F,5,Nanyang Academy of Fine Arts (Diploma),1503.0
+2022,MF,5,Nanyang Academy of Fine Arts (Diploma),2049.0
+2023,F,5,Nanyang Academy of Fine Arts (Diploma),1574.0
+2023,MF,5,Nanyang Academy of Fine Arts (Diploma),2108.0
+2024,F,5,Nanyang Academy of Fine Arts (Diploma),1637.0
+2024,MF,5,Nanyang Academy of Fine Arts (Diploma),2189.0
+2011,F,4,Nanyang Academy of Fine Arts (Degree),9.0
+2011,MF,4,Nanyang Academy of Fine Arts (Degree),20.0
+2012,F,4,Nanyang Academy of Fine Arts (Degree),22.0
+2012,MF,4,Nanyang Academy of Fine Arts (Degree),43.0
+2013,F,4,Nanyang Academy of Fine Arts (Degree),25.0
+2013,MF,4,Nanyang Academy of Fine Arts (Degree),51.0
+2014,F,4,Nanyang Academy of Fine Arts (Degree),31.0
+2014,MF,4,Nanyang Academy of Fine Arts (Degree),53.0
+2015,F,4,Nanyang Academy of Fine Arts (Degree),40.0
+2015,MF,4,Nanyang Academy of Fine Arts (Degree),59.0
+2016,F,4,Nanyang Academy of Fine Arts (Degree),31.0
+2016,MF,4,Nanyang Academy of Fine Arts (Degree),50.0
+2017,F,4,Nanyang Academy of Fine Arts (Degree),24.0
+2017,MF,4,Nanyang Academy of Fine Arts (Degree),39.0
+2018,F,4,Nanyang Academy of Fine Arts (Degree),28.0
+2018,MF,4,Nanyang Academy of Fine Arts (Degree),43.0
+2019,F,4,Nanyang Academy of Fine Arts (Degree),32.0
+2019,MF,4,Nanyang Academy of Fine Arts (Degree),50.0
+2020,F,4,Nanyang Academy of Fine Arts (Degree),29.0
+2020,MF,4,Nanyang Academy of Fine Arts (Degree),46.0
+2021,F,4,Nanyang Academy of Fine Arts (Degree),177.0
+2021,MF,4,Nanyang Academy of Fine Arts (Degree),236.0
+2022,F,4,Nanyang Academy of Fine Arts (Degree),334.0
+2022,MF,4,Nanyang Academy of Fine Arts (Degree),433.0
+2023,F,4,Nanyang Academy of Fine Arts (Degree),413.0
+2023,MF,4,Nanyang Academy of Fine Arts (Degree),514.0
+2024,F,4,Nanyang Academy of Fine Arts (Degree),455.0
+2024,MF,4,Nanyang Academy of Fine Arts (Degree),580.0
+1982,F,1,Institute of Technical Education,2130.0
+1982,MF,1,Institute of Technical Education,10303.0
+1983,F,1,Institute of Technical Education,2753.0
+1983,MF,1,Institute of Technical Education,10664.0
+1984,F,1,Institute of Technical Education,2831.0
+1984,MF,1,Institute of Technical Education,9419.0
+1985,F,1,Institute of Technical Education,3839.0
+1985,MF,1,Institute of Technical Education,13890.0
+1986,F,1,Institute of Technical Education,4682.0
+1986,MF,1,Institute of Technical Education,14666.0
+1987,F,1,Institute of Technical Education,5601.0
+1987,MF,1,Institute of Technical Education,16539.0
+1988,F,1,Institute of Technical Education,5627.0
+1988,MF,1,Institute of Technical Education,17643.0
+1989,F,1,Institute of Technical Education,5751.0
+1989,MF,1,Institute of Technical Education,17353.0
+1990,F,1,Institute of Technical Education,5304.0
+1990,MF,1,Institute of Technical Education,15919.0
+1991,F,1,Institute of Technical Education,5172.0
+1991,MF,1,Institute of Technical Education,15326.0
+1992,F,1,Institute of Technical Education,4942.0
+1992,MF,1,Institute of Technical Education,14975.0
+1993,F,1,Institute of Technical Education,4625.0
+1993,MF,1,Institute of Technical Education,14903.0
+1994,F,1,Institute of Technical Education,3649.0
+1994,MF,1,Institute of Technical Education,12254.0
+1995,F,1,Institute of Technical Education,2726.0
+1995,MF,1,Institute of Technical Education,9300.0
+1996,F,1,Institute of Technical Education,2227.0
+1996,MF,1,Institute of Technical Education,8266.0
+1997,F,1,Institute of Technical Education,2119.0
+1997,MF,1,Institute of Technical Education,8323.0
+1998,F,1,Institute of Technical Education,3942.0
+1998,MF,1,Institute of Technical Education,13808.0
+1999,F,1,Institute of Technical Education,4339.0
+1999,MF,1,Institute of Technical Education,16464.0
+2000,F,1,Institute of Technical Education,4343.0
+2000,MF,1,Institute of Technical Education,15974.0
+2001,F,1,Institute of Technical Education,4584.0
+2001,MF,1,Institute of Technical Education,16176.0
+2002,F,1,Institute of Technical Education,5138.0
+2002,MF,1,Institute of Technical Education,17468.0
+2003,F,1,Institute of Technical Education,5615.0
+2003,MF,1,Institute of Technical Education,17941.0
+2004,F,1,Institute of Technical Education,6076.0
+2004,MF,1,Institute of Technical Education,19207.0
+2005,F,1,Institute of Technical Education,7315.0
+2005,MF,1,Institute of Technical Education,21603.0
+2006,F,1,Institute of Technical Education,8052.0
+2006,MF,1,Institute of Technical Education,23636.0
+2007,F,1,Institute of Technical Education,8235.0
+2007,MF,1,Institute of Technical Education,24370.0
+2008,F,1,Institute of Technical Education,8479.0
+2008,MF,1,Institute of Technical Education,24593.0
+2009,F,1,Institute of Technical Education,8844.0
+2009,MF,1,Institute of Technical Education,24846.0
+2010,F,1,Institute of Technical Education,8856.0
+2010,MF,1,Institute of Technical Education,24789.0
+2011,F,1,Institute of Technical Education,9158.0
+2011,MF,1,Institute of Technical Education,25279.0
+2012,F,1,Institute of Technical Education,9085.0
+2012,MF,1,Institute of Technical Education,25370.0
+2013,F,1,Institute of Technical Education,9428.0
+2013,MF,1,Institute of Technical Education,26288.0
+2014,F,1,Institute of Technical Education,10249.0
+2014,MF,1,Institute of Technical Education,28036.0
+2015,F,1,Institute of Technical Education,11267.0
+2015,MF,1,Institute of Technical Education,29295.0
+2016,F,1,Institute of Technical Education,10346.0
+2016,MF,1,Institute of Technical Education,27519.0
+2017,F,1,Institute of Technical Education,10804.0
+2017,MF,1,Institute of Technical Education,28508.0
+2018,F,1,Institute of Technical Education,10707.0
+2018,MF,1,Institute of Technical Education,28367.0
+2019,F,1,Institute of Technical Education,10658.0
+2019,MF,1,Institute of Technical Education,27968.0
+2020,F,1,Institute of Technical Education,10770.0
+2020,MF,1,Institute of Technical Education,27825.0
+2021,F,1,Institute of Technical Education,10957.0
+2021,MF,1,Institute of Technical Education,27862.0
+2022,F,1,Institute of Technical Education,10976.0
+2022,MF,1,Institute of Technical Education,27570.0
+2023,F,1,Institute of Technical Education,10777.0
+2023,MF,1,Institute of Technical Education,27274.0
+2024,F,1,Institute of Technical Education,11077.0
+2024,MF,1,Institute of Technical Education,28096.0

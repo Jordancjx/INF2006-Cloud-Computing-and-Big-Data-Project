@@ -1,0 +1,18 @@
+column_name,full_name,school_id
+nus,National University of Singapore,9
+ntu,Nanyang Technological University,7
+smu,Singapore Management University,13
+sit,Singapore Institute of Technology,12
+sutd,Singapore University of Technology and Design,16
+suss,Singapore University of Social Sciences,15
+nie,National Institute of Education,8
+singapore_polytechnic,Singapore Polytechnic,14
+ngee_ann_polytechnic,Ngee Ann Polytechnic,10
+temasek_polytechnic,Temasek Polytechnic,17
+nanyang_polytechnic,Nanyang Polytechnic,6
+republic_polytechnic,Republic Polytechnic,11
+lasalle_diploma,LASALLE College of the Arts (Diploma),3
+lasalle_degree,LASALLE College of the Arts (Degree),2
+nafa_diploma,Nanyang Academy of Fine Arts (Diploma),5
+nafa_degree,Nanyang Academy of Fine Arts (Degree),4
+ite,Institute of Technical Education,1
