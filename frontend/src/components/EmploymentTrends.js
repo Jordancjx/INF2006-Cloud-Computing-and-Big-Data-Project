@@ -93,7 +93,7 @@ const EmploymentTrends = () => {
     return (
       <div className="employment-trends">
         <div className="error-container">
-          <h3>⚠️ Error Loading Data</h3>
+          <h3>Error Loading Data</h3>
           <p>{error}</p>
           <p className="error-hint">Make sure the Flask backend is running on port 5000</p>
           <button onClick={() => window.location.reload()}>Retry</button>
@@ -212,7 +212,7 @@ const EmploymentTrends = () => {
 
   const getTrendIcon = (strength) => {
     if (strength === null || strength === undefined) return '—';
-    return strength > 0 ? '📈' : strength < 0 ? '📉' : '➡️';
+    return strength > 0 ? '+' : strength < 0 ? '-' : '=';
   };
 
   const getTrendClass = (strength) => {
@@ -226,7 +226,7 @@ const EmploymentTrends = () => {
       
       <div className="kpi-cards">
         <div className="kpi-card">
-          <div className="kpi-icon">💼</div>
+          <div className="kpi-icon"></div>
           <h3>Avg Overall Employment</h3>
           <p className="kpi-value">
             {kpis.avg_employment_rate_overall 
@@ -237,7 +237,7 @@ const EmploymentTrends = () => {
         </div>
         
         <div className="kpi-card">
-          <div className="kpi-icon">🎯</div>
+          <div className="kpi-icon"></div>
           <h3>Avg FT Permanent</h3>
           <p className="kpi-value">
             {kpis.avg_employment_rate_ft_perm 
@@ -248,7 +248,7 @@ const EmploymentTrends = () => {
         </div>
         
         <div className="kpi-card">
-          <div className="kpi-icon">🔒</div>
+          <div className="kpi-icon"></div>
           <h3>Stability Ratio</h3>
           <p className="kpi-value">
             {kpis.stability_ratio 
@@ -278,7 +278,7 @@ const EmploymentTrends = () => {
       </div>
 
       <div className="insights-section">
-        <h3>📌 Key Insights</h3>
+        <h3>Key Insights</h3>
         <ul>
           <li>
             <strong>Overall Employment:</strong> Average rate of {kpis.avg_employment_rate_overall?.toFixed(1)}% 

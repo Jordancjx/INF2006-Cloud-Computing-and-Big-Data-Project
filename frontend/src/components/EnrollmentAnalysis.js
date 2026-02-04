@@ -88,7 +88,7 @@ const EnrollmentAnalysis = () => {
     return (
       <div className="enrollment-analysis">
         <div className="error-container">
-          <h3>⚠️ Error Loading Data</h3>
+          <h3>Error Loading Data</h3>
           <p>{error}</p>
           <button onClick={() => window.location.reload()}>Retry</button>
         </div>
@@ -191,7 +191,7 @@ const EnrollmentAnalysis = () => {
 
         {data.message && (
           <div className="info-message">
-            ℹ️ {data.message}
+            {data.message}
           </div>
         )}
       </div>

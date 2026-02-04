@@ -78,7 +78,7 @@ const SalaryCorrelation = () => {
     return (
       <div className="salary-correlation">
         <div className="error-container">
-          <h3>⚠️ Error Loading Data</h3>
+          <h3>Error Loading Data</h3>
           <p>{error}</p>
           <button onClick={() => window.location.reload()}>Retry</button>
         </div>
@@ -170,7 +170,7 @@ const SalaryCorrelation = () => {
 
         {data.message && (
           <div className="info-message">
-            ℹ️ {data.message}
+            {data.message}
           </div>
         )}
       </div>

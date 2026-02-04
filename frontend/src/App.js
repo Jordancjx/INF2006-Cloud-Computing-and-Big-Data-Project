@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <header className="app-header">
-        <h1>🎓 Education Analytics Dashboard</h1>
+        <h1>Education Analytics Dashboard</h1>
         <p>Ministry of Education Singapore - Data Analytics Platform</p>
       </header>
 
@@ -19,19 +19,19 @@ function App() {
           className={activeTab === 'employment' ? 'active' : ''}
           onClick={() => setActiveTab('employment')}
         >
-          📈 Employment Trends
+          Employment Trends
         </button>
         <button 
           className={activeTab === 'salary' ? 'active' : ''}
           onClick={() => setActiveTab('salary')}
         >
-          💰 Salary Correlation
+          Salary Correlation
         </button>
         <button 
           className={activeTab === 'enrollment' ? 'active' : ''}
           onClick={() => setActiveTab('enrollment')}
         >
-          🎓 Enrollment Analysis
+          Enrollment Analysis
         </button>
       </nav>
 
