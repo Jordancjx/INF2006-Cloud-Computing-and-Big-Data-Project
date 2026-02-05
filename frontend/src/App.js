@@ -42,7 +42,7 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        <p>Done by Mr Getgo Jordan Chan Jun Xiang</p>
+        <p>Done by Current Ernst and Young Intern and future CEO Ong Hong Liang</p>
       </footer>
     </div>
   );
