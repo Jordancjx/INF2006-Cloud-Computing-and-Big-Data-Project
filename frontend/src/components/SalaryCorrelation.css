@@ -55,6 +55,38 @@
   box-shadow: 0 2px 8px rgba(216, 35, 42, 0.2);
 }
 
+.school-selector {
+  background: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(216, 35, 42, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-left: 4px solid #FFD700;
+}
+
+.school-selector label {
+  font-weight: 600;
+  color: #D8232A;
+}
+
+.school-selector select {
+  padding: 0.5rem 1rem;
+  border: 2px solid #D8232A;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  background: white;
+  transition: all 0.3s;
+  min-width: 250px;
+}
+
+.school-selector select:hover {
+  border-color: #B01E24;
+  box-shadow: 0 2px 8px rgba(216, 35, 42, 0.2);
+}
+
 .info-message {
   background: #FFF3E0;
   border: 2px solid #FF9800;

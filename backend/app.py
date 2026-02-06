@@ -36,12 +36,15 @@ def get_employment_trends():
 def get_salary_employment_correlation():
     """
     API endpoint for salary vs employment correlation analysis
-    Query params: year (optional, default=latest available year)
+    Query params: 
+        - year (optional, default=latest available year)
+        - school (optional, filter by specific school name)
     Returns: JSON with correlation data and statistics
     """
     try:
         year = request.args.get('year', None, type=int)
-        result = salary_employment_correlation(GES_CSV_PATH, year)
+        school = request.args.get('school', None, type=str)
+        result = salary_employment_correlation(GES_CSV_PATH, year, school)
         return jsonify({
             'success': True,
             'data': result

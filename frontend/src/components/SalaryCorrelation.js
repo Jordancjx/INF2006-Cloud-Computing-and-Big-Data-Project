@@ -13,10 +13,13 @@ ChartJS.register(LinearScale, PointElement, Tooltip, Legend);
 
 const SalaryCorrelation = () => {
   const [selectedYear, setSelectedYear] = useState(2023);
+  const [selectedSchool, setSelectedSchool] = useState("");
 
   // Initial placeholder data
   const [data, setData] = useState({
     year: 2023,
+    available_schools: [],
+    selected_school: null,
     data: [
       { degree: "Engineering", employment_rate: 92.5, median_salary: 3800 },
       { degree: "Business", employment_rate: 88.0, median_salary: 3200 },
@@ -39,9 +42,12 @@ const SalaryCorrelation = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(
-          `${API_BASE_URL}/api/analytics/salary-employment-correlation?year=${selectedYear}`,
-        );
+        let url = `${API_BASE_URL}/api/analytics/salary-employment-correlation?year=${selectedYear}`;
+        if (selectedSchool) {
+          url += `&school=${encodeURIComponent(selectedSchool)}`;
+        }
+        
+        const response = await fetch(url);
         const result = await response.json();
 
         if (result.success && result.data.data && result.data.data.length > 0) {
@@ -61,7 +67,7 @@ const SalaryCorrelation = () => {
     };
 
     fetchData();
-  }, [API_BASE_URL, selectedYear]);
+  }, [API_BASE_URL, selectedYear, selectedSchool]);
 
   if (loading) {
     return (
@@ -170,6 +176,21 @@ const SalaryCorrelation = () => {
           </select>
         </div>
 
+        <div className="school-selector">
+          <label>Select School: </label>
+          <select
+            value={selectedSchool}
+            onChange={(e) => setSelectedSchool(e.target.value)}
+          >
+            <option value="">All Schools</option>
+            {data.available_schools && data.available_schools.map((school) => (
+              <option key={school} value={school}>
+                {school}
+              </option>
+            ))}
+          </select>
+        </div>
+
         {data.message && <div className="info-message">{data.message}</div>}
       </div>
 
@@ -193,7 +214,9 @@ const SalaryCorrelation = () => {
         <div className="kpi-card">
           <h3>Programs Analyzed</h3>
           <p className="kpi-value">{data.data.length}</p>
-          <p className="kpi-description">Degree programs in {data.year}</p>
+          <p className="kpi-description">
+            {selectedSchool ? `${selectedSchool} - ${data.year}` : `All schools - ${data.year}`}
+          </p>
         </div>
       </div>
 
