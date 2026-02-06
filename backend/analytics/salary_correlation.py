@@ -67,18 +67,19 @@ def salary_employment_correlation(csv_path, year=None, school=None):
     if school:
         year_df = year_df[year_df["school_name"] == school].copy()
     
-    # Remove rows with missing key values
-    year_df = year_df.dropna(subset=["employment_rate_overall", "gross_monthly_median"])
+    # Remove rows with missing key values and filter out 'na' entries
+    year_df = year_df.dropna(subset=["employment_rate_overall", "gross_monthly_median", "degree"])
+    year_df = year_df[year_df["degree"].str.lower() != "na"]
     
-    # Aggregate by faculty/school (the "school" column which contains faculty names)
-    # This shows faculties like "College of Engineering", "College of Business", etc.
-    analysis_df = year_df.groupby("school").agg({
+    # Aggregate by degree program (the "degree" column which contains specific degree programs)
+    # This shows individual degree programs like "Computer Science", "Mechanical Engineering", etc.
+    analysis_df = year_df.groupby("degree").agg({
         "employment_rate_overall": "mean",
         "employment_rate_ft_perm": "mean",
         "gross_monthly_median": "mean",
         "basic_monthly_median": "mean"
     }).reset_index()
-    analysis_df = analysis_df.rename(columns={"school": "label"})
+    analysis_df = analysis_df.rename(columns={"degree": "label"})
     
     # Round values
     analysis_df["employment_rate_overall"] = analysis_df["employment_rate_overall"].round(1)

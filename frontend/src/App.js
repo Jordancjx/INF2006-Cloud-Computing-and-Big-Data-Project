@@ -42,7 +42,7 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        <p>Done by Hong Liang, who likes feet</p>
+        <p>Done by INF 2006 Lab P2 Group 4</p>
       </footer>
     </div>
   );
