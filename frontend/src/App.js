@@ -42,7 +42,7 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        <p>Done by Current Ernst and Young Intern and future CEO Ong Hong Liang</p>
+        <p>Done by Jarrett Yeo, who is currently fighting his demons</p>
       </footer>
     </div>
   );

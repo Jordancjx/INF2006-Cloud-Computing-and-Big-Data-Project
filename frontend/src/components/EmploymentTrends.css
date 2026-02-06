@@ -4,9 +4,12 @@
 
 .section-title {
   font-size: 2rem;
-  color: #2c3e50;
+  color: #D8232A;
   margin-bottom: 2rem;
   font-weight: 700;
+  border-bottom: 3px solid #FFD700;
+  padding-bottom: 0.75rem;
+  display: inline-block;
 }
 
 /* Loading State */
@@ -19,12 +22,13 @@
   text-align: center;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(216, 35, 42, 0.15);
+  border-left: 4px solid #D8232A;
 }
 
 .spinner {
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #667eea;
+  border-top: 4px solid #D8232A;
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -73,7 +77,7 @@
 }
 
 .error-container button {
-  background-color: #667eea;
+  background-color: #D8232A;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -82,10 +86,12 @@
   font-size: 1rem;
   margin-top: 1rem;
   transition: background-color 0.3s ease;
+  box-shadow: 0 2px 8px rgba(216, 35, 42, 0.3);
 }
 
 .error-container button:hover {
-  background-color: #5568d3;
+  background-color: #B01E24;
+  box-shadow: 0 4px 12px rgba(216, 35, 42, 0.4);
 }
 
 /* No Data State */
@@ -110,24 +116,27 @@
   background: white;
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(216, 35, 42, 0.1);
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-top: 3px solid #FFD700;
 }
 
 .kpi-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 6px 20px rgba(216, 35, 42, 0.2);
+  border-top-color: #D8232A;
 }
 
 .kpi-icon {
   font-size: 2rem;
   margin-bottom: 0.5rem;
+  color: #D8232A;
 }
 
 .kpi-card h3 {
   font-size: 0.9rem;
-  color: #7f8c8d;
+  color: #555;
   margin-bottom: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -137,7 +146,7 @@
 .kpi-value {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #2c3e50;
+  color: #D8232A;
   margin: 0.75rem 0;
   line-height: 1;
 }
@@ -161,13 +170,14 @@
   background: white;
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(216, 35, 42, 0.1);
   margin-bottom: 2rem;
+  border-left: 4px solid #0066CC;
 }
 
 .chart-title {
   font-size: 1.4rem;
-  color: #2c3e50;
+  color: #D8232A;
   margin-bottom: 1.5rem;
   font-weight: 600;
 }
@@ -180,15 +190,15 @@
 
 /* Insights Section */
 .insights-section {
-  background: #f8f9fa;
-  border-left: 4px solid #667eea;
+  background: #FFF8E1;
+  border-left: 4px solid #FF9800;
   border-radius: 8px;
   padding: 1.5rem;
   margin-top: 2rem;
 }
 
 .insights-section h3 {
-  color: #2c3e50;
+  color: #D8232A;
   margin-bottom: 1rem;
   font-size: 1.3rem;
 }

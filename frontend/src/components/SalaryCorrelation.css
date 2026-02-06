@@ -6,9 +6,13 @@
 
 .salary-correlation h2 {
   font-size: 2rem;
-  color: #2c3e50;
+  color: #D8232A;
   margin-bottom: 2rem;
   text-align: center;
+  border-bottom: 3px solid #FFD700;
+  padding-bottom: 0.75rem;
+  display: inline-block;
+  width: 100%;
 }
 
 .controls-section {
@@ -24,38 +28,41 @@
   background: white;
   padding: 1rem 2rem;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(216, 35, 42, 0.15);
   display: flex;
   align-items: center;
   gap: 1rem;
+  border-left: 4px solid #0066CC;
 }
 
 .year-selector label {
   font-weight: 600;
-  color: #2c3e50;
+  color: #D8232A;
 }
 
 .year-selector select {
   padding: 0.5rem 1rem;
-  border: 2px solid #667eea;
+  border: 2px solid #D8232A;
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
   background: white;
-  transition: border-color 0.3s;
+  transition: all 0.3s;
 }
 
 .year-selector select:hover {
-  border-color: #764ba2;
+  border-color: #B01E24;
+  box-shadow: 0 2px 8px rgba(216, 35, 42, 0.2);
 }
 
 .info-message {
-  background: #fff3cd;
-  border: 1px solid #ffc107;
+  background: #FFF3E0;
+  border: 2px solid #FF9800;
   border-radius: 6px;
   padding: 0.75rem 1.5rem;
-  color: #856404;
+  color: #E65100;
   font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .kpi-row {
@@ -72,15 +79,18 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   text-align: center;
   transition: transform 0.2s ease;
+  border-top: 3px solid #FFD700;
 }
 
 .kpi-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(216, 35, 42, 0.2);
+  border-top-color: #D8232A;
 }
 
 .kpi-card h3 {
   font-size: 0.9rem;
-  color: #7f8c8d;
+  color: #555;
   margin-bottom: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -90,7 +100,7 @@
 .kpi-value {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #667eea;
+  color: #D8232A;
   margin: 0.75rem 0;
 }
 
@@ -104,13 +114,14 @@
   background: white;
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(216, 35, 42, 0.1);
   margin-bottom: 2rem;
+  border-left: 4px solid #0066CC;
 }
 
 .chart-section h3 {
   font-size: 1.4rem;
-  color: #2c3e50;
+  color: #D8232A;
   margin-bottom: 1.5rem;
   font-weight: 600;
 }
@@ -125,12 +136,13 @@
   background: white;
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(216, 35, 42, 0.1);
+  border-left: 4px solid #0066CC;
 }
 
 .data-table h3 {
   font-size: 1.4rem;
-  color: #2c3e50;
+  color: #D8232A;
   margin-bottom: 1.5rem;
 }
 
@@ -147,8 +159,8 @@
 }
 
 .data-table th {
-  background: #f8f9fa;
-  color: #2c3e50;
+  background: #FFF8E1;
+  color: #D8232A;
   font-weight: 600;
   text-transform: uppercase;
   font-size: 0.85rem;
@@ -174,7 +186,7 @@
 
 .spinner {
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #667eea;
+  border-top: 4px solid #D8232A;
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -198,7 +210,7 @@
 }
 
 .error-container button {
-  background-color: #667eea;
+  background-color: #D8232A;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -207,10 +219,12 @@
   font-size: 1rem;
   margin-top: 1rem;
   transition: background-color 0.3s;
+  box-shadow: 0 2px 8px rgba(216, 35, 42, 0.3);
 }
 
 .error-container button:hover {
-  background-color: #5568d3;
+  background-color: #B01E24;
+  box-shadow: 0 4px 12px rgba(216, 35, 42, 0.4);
 }
 
 @media (max-width: 768px) {
