@@ -1,7 +1,7 @@
 import os
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from analytics.employment_trends import employment_trend
+from analytics.employment_trends import employment_trend, employment_by_school
 from analytics.salary_correlation import salary_employment_correlation
 from analytics.enrollment_analysis import enrollment_graduate_analysis
 
@@ -22,6 +22,32 @@ def get_employment_trends():
     """
     try:
         result = employment_trend(GES_CSV_PATH)
+        return jsonify({
+            'success': True,
+            'data': result
+        }), 200
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+@app.route("/api/analytics/employment-by-school")
+def get_employment_by_school():
+    """
+    API endpoint for employment breakdown by school for a specific year
+    Query params: year (required)
+    Returns: JSON with school-level employment data
+    """
+    try:
+        year = request.args.get('year', type=int)
+        if year is None:
+            return jsonify({
+                'success': False,
+                'error': 'Year parameter is required'
+            }), 400
+        
+        result = employment_by_school(GES_CSV_PATH, year)
         return jsonify({
             'success': True,
             'data': result

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
@@ -17,6 +18,7 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
@@ -91,9 +93,42 @@ const EmploymentTrends = () => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [schoolBreakdown, setSchoolBreakdown] = useState(null);
+  const [selectedYear, setSelectedYear] = useState(null);
+  const [loadingBreakdown, setLoadingBreakdown] = useState(false);
+  const [viewMode, setViewMode] = useState('trend'); // 'trend' or 'breakdown'
 
   // API base URL - change this when deploying to AWS
   const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
+  // Fetch school breakdown when year is clicked
+  const fetchSchoolBreakdown = async (year) => {
+    setLoadingBreakdown(true);
+    setViewMode('breakdown');
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/api/analytics/employment-by-school?year=${year}`
+      );
+      const result = await response.json();
+      
+      if (result.success) {
+        setSchoolBreakdown(result.data);
+        setSelectedYear(year);
+      }
+    } catch (err) {
+      console.error("Error fetching school breakdown:", err);
+      setViewMode('trend');
+    } finally {
+      setLoadingBreakdown(false);
+    }
+  };
+
+  // Go back to trend view
+  const backToTrend = () => {
+    setViewMode('trend');
+    setSchoolBreakdown(null);
+    setSelectedYear(null);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -190,6 +225,13 @@ const EmploymentTrends = () => {
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    onClick: (event, elements) => {
+      if (elements.length > 0) {
+        const index = elements[0].index;
+        const year = data.trend[index].year;
+        fetchSchoolBreakdown(year);
+      }
+    },
     plugins: {
       legend: {
         position: "top",
@@ -323,9 +365,78 @@ const EmploymentTrends = () => {
       </div>
 
       <div className="chart-section">
-        <h3 className="chart-title">Employment Rate Trends Over Time</h3>
+        <div className="chart-header">
+          {viewMode === 'breakdown' && (
+            <button className="back-btn" onClick={backToTrend}>
+              ← Back to Trends
+            </button>
+          )}
+          <h3 className="chart-title">
+            {viewMode === 'trend' 
+              ? 'Employment Rate Trends Over Time' 
+              : `School Breakdown for ${selectedYear}`}
+          </h3>
+        </div>
+        
+        {viewMode === 'trend' && (
+          <p className="chart-hint">💡 Click on any year to see school breakdown</p>
+        )}
+        
         <div className="chart-container">
-          <Line data={chartData} options={chartOptions} />
+          {loadingBreakdown ? (
+            <div className="loading-breakdown">
+              <div className="spinner"></div>
+              <p>Loading school data...</p>
+            </div>
+          ) : viewMode === 'trend' ? (
+            <Line data={chartData} options={chartOptions} />
+          ) : schoolBreakdown ? (
+            <Bar 
+              data={{
+                labels: schoolBreakdown.schools.map(s => s.school),
+                datasets: [
+                  {
+                    label: "Overall Employment Rate (%)",
+                    data: schoolBreakdown.schools.map(s => s.employment_rate_overall),
+                    backgroundColor: "rgba(102, 126, 234, 0.7)",
+                    borderColor: "rgb(102, 126, 234)",
+                    borderWidth: 2,
+                  },
+                  {
+                    label: "Full-Time Permanent Rate (%)",
+                    data: schoolBreakdown.schools.map(s => s.employment_rate_ft_perm),
+                    backgroundColor: "rgba(118, 75, 162, 0.7)",
+                    borderColor: "rgb(118, 75, 162)",
+                    borderWidth: 2,
+                  }
+                ]
+              }}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                  legend: {
+                    position: 'top',
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: (context) => `${context.dataset.label}: ${context.parsed.x.toFixed(1)}%`
+                    }
+                  }
+                },
+                scales: {
+                  x: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                      callback: (value) => `${value}%`
+                    }
+                  }
+                }
+              }}
+            />
+          ) : null}
         </div>
       </div>
 

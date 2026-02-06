@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import os
 
 def clean_employment_column(series):
     return pd.to_numeric(
@@ -72,3 +73,58 @@ def employment_trend(csv_path):
         }
     }
 
+
+def employment_by_school(csv_path, year):
+    """
+    Get employment rates broken down by school for a specific year.
+    
+    Args:
+        csv_path: Path to GES_cleaned.csv
+        year: Specific year to analyze
+    
+    Returns:
+        List of schools with their employment rates for that year
+    """
+    df = pd.read_csv(csv_path)
+    
+    # Load school lookup table
+    base_dir = os.path.dirname(csv_path)
+    schools_lookup = pd.read_csv(os.path.join(base_dir, "schools_lookup.csv"))
+    
+    # Merge to get proper school names
+    df = df.merge(schools_lookup, on="school_id", how="left")
+    
+    # Clean employment columns
+    df["employment_rate_overall"] = clean_employment_column(df["employment_rate_overall"])
+    df["employment_rate_ft_perm"] = clean_employment_column(df["employment_rate_ft_perm"])
+    
+    # Filter by year
+    year_df = df[df["year"] == year].copy()
+    
+    # Aggregate by school
+    school_breakdown = year_df.groupby("school_name").agg({
+        "employment_rate_overall": "mean",
+        "employment_rate_ft_perm": "mean"
+    }).reset_index()
+    
+    # Round values
+    school_breakdown["employment_rate_overall"] = school_breakdown["employment_rate_overall"].round(1)
+    school_breakdown["employment_rate_ft_perm"] = school_breakdown["employment_rate_ft_perm"].round(1)
+    
+    # Sort by employment rate
+    school_breakdown = school_breakdown.sort_values("employment_rate_overall", ascending=False)
+    
+    # Convert to list of dicts
+    result = []
+    for _, row in school_breakdown.iterrows():
+        result.append({
+            "school": row["school_name"],
+            "employment_rate_overall": row["employment_rate_overall"],
+            "employment_rate_ft_perm": row["employment_rate_ft_perm"]
+        })
+    
+    return {
+        "year": int(year),
+        "schools": result,
+        "total_schools": len(result)
+    }

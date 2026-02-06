@@ -264,3 +264,21 @@
     height: 250px;
   }
 }
+
+/* School Breakdown Section */
+.loading-breakdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  height: 400px;
+}
+
+.chart-hint {
+  color: #666;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
