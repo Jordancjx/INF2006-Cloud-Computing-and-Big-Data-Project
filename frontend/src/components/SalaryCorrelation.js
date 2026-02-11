@@ -12,31 +12,15 @@ import "./SalaryCorrelation.css";
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend);
 
 const SalaryCorrelation = () => {
-  const [selectedYear, setSelectedYear] = useState(2023);
+  const [selectedYear, setSelectedYear] = useState(2022);
   const [selectedSchool, setSelectedSchool] = useState("");
-
-  // Initial placeholder data
-  const [data, setData] = useState({
-    year: 2023,
-    available_schools: [],
-    selected_school: null,
-    data: [
-      { degree: "Engineering", employment_rate: 92.5, median_salary: 3800 },
-      { degree: "Business", employment_rate: 88.0, median_salary: 3200 },
-      { degree: "IT", employment_rate: 94.0, median_salary: 4000 },
-      { degree: "Health Sciences", employment_rate: 96.0, median_salary: 3500 },
-      { degree: "Arts", employment_rate: 82.0, median_salary: 2800 },
-      { degree: "Sciences", employment_rate: 85.0, median_salary: 3000 },
-      { degree: "Social Sciences", employment_rate: 84.0, median_salary: 2900 },
-    ],
-    correlation_coefficient: 0.78,
-    message: "Using placeholder data - Backend not yet implemented",
-  });
-
+  
+  // Placeholder data removed - initialized as null
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+  const API_BASE_URL = "http://3.238.41.206:5000";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,19 +32,19 @@ const SalaryCorrelation = () => {
         }
         
         const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const result = await response.json();
 
-        if (result.success && result.data.data && result.data.data.length > 0) {
-          // Replace placeholder with real data
+        if (result.success && result.data) {
           setData(result.data);
         } else {
-          // Keep placeholder data and show message
-          setData((prev) => ({ ...prev, year: selectedYear }));
+          setError(result.error || "No data found for the selected criteria");
         }
       } catch (err) {
         console.error("Error fetching salary correlation:", err);
         setError(`Network error: ${err.message}`);
-        // Keep placeholder data on error
       } finally {
         setLoading(false);
       }
@@ -69,6 +53,7 @@ const SalaryCorrelation = () => {
     fetchData();
   }, [API_BASE_URL, selectedYear, selectedSchool]);
 
+  // Loading View
   if (loading) {
     return (
       <div className="salary-correlation">
@@ -80,6 +65,7 @@ const SalaryCorrelation = () => {
     );
   }
 
+  // Error View
   if (error) {
     return (
       <div className="salary-correlation">
@@ -87,6 +73,17 @@ const SalaryCorrelation = () => {
           <h3>Error Loading Data</h3>
           <p>{error}</p>
           <button onClick={() => window.location.reload()}>Retry</button>
+        </div>
+      </div>
+    );
+  }
+
+  // Safety check - if loading is finished but data is still null
+  if (!data || !data.data) {
+    return (
+      <div className="salary-correlation">
+        <div className="no-data-container">
+          <p>No analytics data available for this selection.</p>
         </div>
       </div>
     );
@@ -114,10 +111,7 @@ const SalaryCorrelation = () => {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: {
-        display: true,
-        position: "top",
-      },
+      legend: { display: true, position: "top" },
       tooltip: {
         callbacks: {
           label: function (context) {
@@ -138,9 +132,7 @@ const SalaryCorrelation = () => {
           text: "Median Monthly Salary ($)",
           font: { size: 14, weight: "bold" },
         },
-        ticks: {
-          callback: (value) => `$${value}`,
-        },
+        ticks: { callback: (value) => `$${value}` },
       },
       y: {
         title: {
@@ -148,11 +140,8 @@ const SalaryCorrelation = () => {
           text: "Employment Rate (%)",
           font: { size: 14, weight: "bold" },
         },
-        min: 75,
-        max: 100,
-        ticks: {
-          callback: (value) => `${value}%`,
-        },
+        // Dynamically adjust scale based on data if available, or defaults
+        ticks: { callback: (value) => `${value}%` },
       },
     },
   };
@@ -168,10 +157,8 @@ const SalaryCorrelation = () => {
             value={selectedYear}
             onChange={(e) => setSelectedYear(Number(e.target.value))}
           >
-            {[2018, 2019, 2020, 2021, 2022, 2023].map((year) => (
-              <option key={year} value={year}>
-                {year}
-              </option>
+            {[2018, 2019, 2020, 2021, 2022].map((year) => (
+              <option key={year} value={year}>{year}</option>
             ))}
           </select>
         </div>
@@ -183,15 +170,11 @@ const SalaryCorrelation = () => {
             onChange={(e) => setSelectedSchool(e.target.value)}
           >
             <option value="">All Schools</option>
-            {data.available_schools && data.available_schools.map((school) => (
-              <option key={school} value={school}>
-                {school}
-              </option>
+            {data.available_schools?.map((school) => (
+              <option key={school} value={school}>{school}</option>
             ))}
           </select>
         </div>
-
-        {data.message && <div className="info-message">{data.message}</div>}
       </div>
 
       <div className="kpi-row">
@@ -215,13 +198,12 @@ const SalaryCorrelation = () => {
           <h3>Programs Analyzed</h3>
           <p className="kpi-value">{data.data.length}</p>
           <p className="kpi-description">
-            {selectedSchool ? `${selectedSchool} - ${data.year}` : `All schools - ${data.year}`}
+            {selectedSchool ? `${selectedSchool}` : "All schools"} — {data.year}
           </p>
         </div>
       </div>
 
       <div className="chart-section">
-        <h3>Salary vs Employment Rate by Degree</h3>
         <div className="chart-container">
           <Scatter data={scatterData} options={scatterOptions} />
         </div>
@@ -242,7 +224,7 @@ const SalaryCorrelation = () => {
               <tr key={index}>
                 <td>{item.degree}</td>
                 <td>{item.employment_rate.toFixed(1)}%</td>
-                <td>${item.median_salary}</td>
+                <td>${item.median_salary.toLocaleString()}</td>
               </tr>
             ))}
           </tbody>
