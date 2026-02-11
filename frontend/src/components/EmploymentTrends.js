@@ -96,7 +96,10 @@ const EmploymentTrends = () => {
   const [schoolBreakdown, setSchoolBreakdown] = useState(null);
   const [selectedYear, setSelectedYear] = useState(null);
   const [loadingBreakdown, setLoadingBreakdown] = useState(false);
-  const [viewMode, setViewMode] = useState('trend'); // 'trend' or 'breakdown'
+  const [viewMode, setViewMode] = useState('trend'); // 'trend', 'breakdown', or 'degree'
+  const [degreeBreakdown, setDegreeBreakdown] = useState(null);
+  const [selectedSchool, setSelectedSchool] = useState(null);
+  const [selectedMetric, setSelectedMetric] = useState('overall'); // 'overall' or 'ft_perm'
 
   // API base URL - change this when deploying to AWS
   const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
@@ -123,11 +126,54 @@ const EmploymentTrends = () => {
     }
   };
 
+  // Fetch degree breakdown when a school bar is clicked
+  const fetchDegreeBreakdown = async (schoolName, metricType) => {
+    setLoadingBreakdown(true);
+    setViewMode('degree');
+    setSelectedMetric(metricType);
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/api/analytics/employment-by-degree?year=${selectedYear}&school=${encodeURIComponent(schoolName)}&metric_type=${metricType}`
+      );
+      const result = await response.json();
+      
+      if (result.success) {
+        // Check if we have any degree data
+        if (result.data.degrees && result.data.degrees.length > 0) {
+          setDegreeBreakdown(result.data);
+          setSelectedSchool(schoolName);
+        } else {
+          // No degree data available, show alert and stay in breakdown view
+          alert(`No degree data available for ${schoolName} in ${selectedYear}`);
+          setViewMode('breakdown');
+        }
+      } else {
+        // API returned an error
+        console.error("API error:", result.error);
+        setViewMode('breakdown');
+      }
+    } catch (err) {
+      console.error("Error fetching degree breakdown:", err);
+      setViewMode('breakdown');
+    } finally {
+      setLoadingBreakdown(false);
+    }
+  };
+
+  // Go back to school breakdown view
+  const backToSchools = () => {
+    setViewMode('breakdown');
+    setDegreeBreakdown(null);
+    setSelectedSchool(null);
+  };
+
   // Go back to trend view
   const backToTrend = () => {
     setViewMode('trend');
     setSchoolBreakdown(null);
+    setDegreeBreakdown(null);
     setSelectedYear(null);
+    setSelectedSchool(null);
   };
 
   useEffect(() => {
@@ -371,26 +417,36 @@ const EmploymentTrends = () => {
               ← Back to Trends
             </button>
           )}
+          {viewMode === 'degree' && (
+            <button className="back-btn" onClick={backToSchools}>
+              ← Back to Schools
+            </button>
+          )}
           <h3 className="chart-title">
             {viewMode === 'trend' 
               ? 'Employment Rate Trends Over Time' 
-              : `School Breakdown for ${selectedYear}`}
+              : viewMode === 'breakdown'
+              ? `School Breakdown for ${selectedYear}`
+              : `${selectedMetric === 'overall' ? 'Overall' : 'Full-Time Permanent'} Employment Rate by Degree - ${selectedSchool} (${selectedYear})`}
           </h3>
         </div>
         
         {viewMode === 'trend' && (
           <p className="chart-hint">💡 Click on any year to see school breakdown</p>
         )}
+        {viewMode === 'breakdown' && (
+          <p className="chart-hint">💡 Click on any bar to see degree breakdown</p>
+        )}
         
         <div className="chart-container">
           {loadingBreakdown ? (
             <div className="loading-breakdown">
               <div className="spinner"></div>
-              <p>Loading school data...</p>
+              <p>Loading {viewMode === 'breakdown' ? 'school' : 'degree'} data...</p>
             </div>
           ) : viewMode === 'trend' ? (
             <Line data={chartData} options={chartOptions} />
-          ) : schoolBreakdown ? (
+          ) : viewMode === 'breakdown' && schoolBreakdown ? (
             <Bar 
               data={{
                 labels: schoolBreakdown.schools.map(s => s.school),
@@ -407,6 +463,58 @@ const EmploymentTrends = () => {
                     data: schoolBreakdown.schools.map(s => s.employment_rate_ft_perm),
                     backgroundColor: "rgba(118, 75, 162, 0.7)",
                     borderColor: "rgb(118, 75, 162)",
+                    borderWidth: 2,
+                  }
+                ]
+              }}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                onClick: (event, elements) => {
+                  if (elements.length > 0) {
+                    const schoolIndex = elements[0].index;
+                    const datasetIndex = elements[0].datasetIndex;
+                    const schoolName = schoolBreakdown.schools[schoolIndex].school;
+                    const metricType = datasetIndex === 0 ? 'overall' : 'ft_perm';
+                    fetchDegreeBreakdown(schoolName, metricType);
+                  }
+                },
+                plugins: {
+                  legend: {
+                    position: 'top',
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: (context) => `${context.dataset.label}: ${context.parsed.x.toFixed(1)}%`
+                    }
+                  }
+                },
+                scales: {
+                  x: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                      callback: (value) => `${value}%`
+                    }
+                  }
+                }
+              }}
+            />
+          ) : viewMode === 'degree' && degreeBreakdown ? (
+            <Bar 
+              data={{
+                labels: degreeBreakdown.degrees.map(d => d.degree),
+                datasets: [
+                  {
+                    label: `${selectedMetric === 'overall' ? 'Overall' : 'Full-Time Permanent'} Employment Rate (%)`,
+                    data: degreeBreakdown.degrees.map(d => d.employment_rate),
+                    backgroundColor: selectedMetric === 'overall' 
+                      ? "rgba(102, 126, 234, 0.7)" 
+                      : "rgba(118, 75, 162, 0.7)",
+                    borderColor: selectedMetric === 'overall' 
+                      ? "rgb(102, 126, 234)" 
+                      : "rgb(118, 75, 162)",
                     borderWidth: 2,
                   }
                 ]

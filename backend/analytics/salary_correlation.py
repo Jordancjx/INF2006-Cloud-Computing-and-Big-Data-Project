@@ -68,18 +68,27 @@ def salary_employment_correlation(csv_path, year=None, school=None):
         year_df = year_df[year_df["school_name"] == school].copy()
     
     # Remove rows with missing key values and filter out 'na' entries
-    year_df = year_df.dropna(subset=["employment_rate_overall", "gross_monthly_median", "degree"])
+    year_df = year_df.dropna(subset=["employment_rate_overall", "gross_monthly_median", "degree", "school_name"])
     year_df = year_df[year_df["degree"].str.lower() != "na"]
     
-    # Aggregate by degree program (the "degree" column which contains specific degree programs)
-    # This shows individual degree programs like "Computer Science", "Mechanical Engineering", etc.
-    analysis_df = year_df.groupby("degree").agg({
-        "employment_rate_overall": "mean",
-        "employment_rate_ft_perm": "mean",
-        "gross_monthly_median": "mean",
-        "basic_monthly_median": "mean"
-    }).reset_index()
-    analysis_df = analysis_df.rename(columns={"degree": "label"})
+    # Aggregate differently based on whether a specific school is selected
+    if school:
+        # If specific school selected, group by degree only
+        analysis_df = year_df.groupby("degree").agg({
+            "employment_rate_overall": "mean",
+            "employment_rate_ft_perm": "mean",
+            "gross_monthly_median": "mean",
+            "basic_monthly_median": "mean",
+            "school_name": "first"  # Take the first school_name (they're all the same)
+        }).reset_index()
+    else:
+        # If viewing all schools, group by both degree and school
+        analysis_df = year_df.groupby(["degree", "school_name"]).agg({
+            "employment_rate_overall": "mean",
+            "employment_rate_ft_perm": "mean",
+            "gross_monthly_median": "mean",
+            "basic_monthly_median": "mean"
+        }).reset_index()
     
     # Round values
     analysis_df["employment_rate_overall"] = analysis_df["employment_rate_overall"].round(1)
@@ -93,11 +102,12 @@ def salary_employment_correlation(csv_path, year=None, school=None):
         analysis_df["employment_rate_overall"].values
     )
     
-    # Prepare scatter plot data (rename for frontend compatibility)
+    # Prepare scatter plot data (include school information)
     scatter_data = []
     for _, row in analysis_df.iterrows():
         scatter_data.append({
-            "degree": row["label"],  # Using label (school or degree name)
+            "degree": row["degree"],
+            "school": row["school_name"],
             "employment_rate": row["employment_rate_overall"],
             "median_salary": row["gross_monthly_median"]
         })
@@ -105,11 +115,13 @@ def salary_employment_correlation(csv_path, year=None, school=None):
     # Sort by median salary descending
     scatter_data = sorted(scatter_data, key=lambda x: x["median_salary"], reverse=True)
     
-    # Calculate summary statistics
+    # Calculate summary statistics (using first data point as representative)
     avg_salary = analysis_df["gross_monthly_median"].mean()
     avg_employment = analysis_df["employment_rate_overall"].mean()
-    max_salary_item = analysis_df.loc[analysis_df["gross_monthly_median"].idxmax()]
-    min_salary_item = analysis_df.loc[analysis_df["gross_monthly_median"].idxmin()]
+    max_salary_idx = analysis_df["gross_monthly_median"].idxmax()
+    min_salary_idx = analysis_df["gross_monthly_median"].idxmin()
+    max_salary_item = analysis_df.loc[max_salary_idx]
+    min_salary_item = analysis_df.loc[min_salary_idx]
     
     return {
         "year": int(year),
@@ -122,12 +134,14 @@ def salary_employment_correlation(csv_path, year=None, school=None):
             "avg_median_salary": round(avg_salary, 0) if not pd.isna(avg_salary) else None,
             "avg_employment_rate": round(avg_employment, 1) if not pd.isna(avg_employment) else None,
             "highest_salary_school": {
-                "name": max_salary_item["label"],
+                "name": max_salary_item["degree"],
+                "school": max_salary_item["school_name"],
                 "salary": max_salary_item["gross_monthly_median"],
                 "employment_rate": max_salary_item["employment_rate_overall"]
             },
             "lowest_salary_school": {
-                "name": min_salary_item["label"],
+                "name": min_salary_item["degree"],
+                "school": min_salary_item["school_name"],
                 "salary": min_salary_item["gross_monthly_median"],
                 "employment_rate": min_salary_item["employment_rate_overall"]
             },
@@ -154,3 +168,83 @@ def get_correlation_interpretation(correlation):
         strength = "very weak or no"
     
     return f"There is a {strength} {direction} correlation (r={correlation}) between median salary and employment rate."
+
+
+def degree_historical_trends(csv_path, degree_name, school_name=None):
+    """
+    Get historical salary and employment trends for a specific degree over all years.
+    
+    Args:
+        csv_path: Path to GES_cleaned.csv
+        degree_name: Name of the degree to analyze
+        school_name: Optional school filter (if None, aggregates across all schools)
+    
+    Returns:
+        Dictionary with year-by-year salary and employment data
+    """
+    df = pd.read_csv(csv_path)
+    
+    # Load school lookup table
+    base_dir = os.path.dirname(csv_path)
+    schools_lookup = pd.read_csv(os.path.join(base_dir, "schools_lookup.csv"))
+    
+    # Merge to get proper school names
+    df = df.merge(schools_lookup, on="school_id", how="left")
+    
+    # Clean numeric columns
+    df["employment_rate_overall"] = clean_numeric_column(df["employment_rate_overall"])
+    df["employment_rate_ft_perm"] = clean_numeric_column(df["employment_rate_ft_perm"])
+    df["gross_monthly_median"] = clean_numeric_column(df["gross_monthly_median"])
+    
+    # Filter by degree name
+    filtered_df = df[df["degree"] == degree_name].copy()
+    
+    # Filter by school if specified
+    if school_name:
+        filtered_df = filtered_df[filtered_df["school_name"] == school_name].copy()
+    
+    if len(filtered_df) == 0:
+        return {
+            "degree": degree_name,
+            "school": school_name,
+            "schools_offering": [],
+            "trends": [],
+            "total_years": 0
+        }
+    
+    # Remove rows with missing values
+    filtered_df = filtered_df.dropna(subset=["year", "employment_rate_overall", "gross_monthly_median"])
+    
+    # Get list of schools offering this degree
+    schools_offering = sorted(filtered_df["school_name"].unique().tolist())
+    
+    # Aggregate by year
+    yearly_trends = filtered_df.groupby("year").agg({
+        "employment_rate_overall": "mean",
+        "employment_rate_ft_perm": "mean",
+        "gross_monthly_median": "mean"
+    }).reset_index()
+    
+    # Round values
+    yearly_trends["employment_rate_overall"] = yearly_trends["employment_rate_overall"].round(1)
+    yearly_trends["employment_rate_ft_perm"] = yearly_trends["employment_rate_ft_perm"].round(1)
+    yearly_trends["gross_monthly_median"] = yearly_trends["gross_monthly_median"].round(0)
+    
+    # Convert to list of dicts
+    trends = []
+    for _, row in yearly_trends.iterrows():
+        trends.append({
+            "year": int(row["year"]),
+            "employment_rate": row["employment_rate_overall"],
+            "employment_rate_ft_perm": row["employment_rate_ft_perm"],
+            "median_salary": row["gross_monthly_median"]
+        })
+    
+    return {
+        "degree": degree_name,
+        "school": school_name,
+        "schools_offering": schools_offering,
+        "trends": trends,
+        "total_years": len(trends)
+    }
+

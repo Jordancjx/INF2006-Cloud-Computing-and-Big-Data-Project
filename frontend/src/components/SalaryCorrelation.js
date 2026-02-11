@@ -1,19 +1,56 @@
 import React, { useState, useEffect } from "react";
-import { Scatter } from "react-chartjs-2";
+import { Scatter, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   LinearScale,
   PointElement,
+  LineElement,
+  CategoryScale,
   Tooltip,
   Legend,
 } from "chart.js";
 import "./SalaryCorrelation.css";
 
-ChartJS.register(LinearScale, PointElement, Tooltip, Legend);
+ChartJS.register(LinearScale, PointElement, LineElement, CategoryScale, Tooltip, Legend);
 
 const SalaryCorrelation = () => {
   const [selectedYear, setSelectedYear] = useState(2023);
   const [selectedSchool, setSelectedSchool] = useState("");
+  const [viewMode, setViewMode] = useState('scatter'); // 'scatter' or 'trends'
+  const [selectedDegree, setSelectedDegree] = useState(null);
+  const [degreeHistoricalData, setDegreeHistoricalData] = useState(null);
+  const [loadingTrends, setLoadingTrends] = useState(false);
+
+  // Color palette for different schools
+  const schoolColors = {
+    "Nanyang Technological University": "#D8232A",
+    "National University of Singapore": "#003D7C",
+    "Singapore Management University": "#0077BE",
+    "Singapore University of Technology and Design": "#FF6E1B",
+    "Singapore Institute of Technology": "#6A1E55",
+    "Singapore University of Social Sciences": "#00A94F",
+    "Nanyang Polytechnic": "#8B4789",
+    "Singapore Polytechnic": "#E31837",
+    "Temasek Polytechnic": "#0056A5",
+    "Republic Polytechnic": "#009639",
+    "Ngee Ann Polytechnic": "#8C1D40",
+    "LASALLE College of the Arts (Degree)": "#FFD700",
+    "Nanyang Academy of Fine Arts (Degree)": "#FF9500",
+    "National Institute of Education": "#3B5998",
+    "Institute of Technical Education": "#7D3C98",
+  };
+
+  const getSchoolColor = (schoolName) => {
+    return schoolColors[schoolName] || "#667EA4"; // Default color if school not in palette
+  };
+
+  // Convert hex color to rgba with transparency
+  const hexToRgba = (hex, alpha = 0.6) => {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  };
 
   // Initial placeholder data
   const [data, setData] = useState({
@@ -69,6 +106,42 @@ const SalaryCorrelation = () => {
     fetchData();
   }, [API_BASE_URL, selectedYear, selectedSchool]);
 
+  // Fetch degree historical trends when a point is clicked
+  const fetchDegreeHistoricalTrends = async (degreeName, schoolName) => {
+    setLoadingTrends(true);
+    setViewMode('trends');
+    setSelectedDegree({ name: degreeName, school: schoolName });
+    
+    try {
+      let url = `${API_BASE_URL}/api/analytics/degree-historical-trends?degree=${encodeURIComponent(degreeName)}`;
+      if (selectedSchool) {
+        url += `&school=${encodeURIComponent(selectedSchool)}`;
+      }
+      
+      const response = await fetch(url);
+      const result = await response.json();
+      
+      if (result.success) {
+        setDegreeHistoricalData(result.data);
+      } else {
+        alert(`No historical data available for ${degreeName}`);
+        setViewMode('scatter');
+      }
+    } catch (err) {
+      console.error("Error fetching degree trends:", err);
+      setViewMode('scatter');
+    } finally {
+      setLoadingTrends(false);
+    }
+  };
+
+  // Go back to scatter view
+  const backToScatter = () => {
+    setViewMode('scatter');
+    setSelectedDegree(null);
+    setDegreeHistoricalData(null);
+  };
+
   if (loading) {
     return (
       <div className="salary-correlation">
@@ -92,27 +165,43 @@ const SalaryCorrelation = () => {
     );
   }
 
-  // Prepare scatter plot data
+  // Prepare scatter plot data - group by school for coloring
+  const groupedBySchool = {};
+  data.data.forEach((item) => {
+    const school = item.school || "Other";
+    if (!groupedBySchool[school]) {
+      groupedBySchool[school] = [];
+    }
+    groupedBySchool[school].push(item);
+  });
+
   const scatterData = {
-    datasets: [
-      {
-        label: "Degree Programs",
-        data: data.data.map((item) => ({
-          x: item.median_salary,
-          y: item.employment_rate,
-          label: item.degree,
-        })),
-        backgroundColor: "rgba(102, 126, 234, 0.6)",
-        borderColor: "rgba(102, 126, 234, 1)",
-        pointRadius: 8,
-        pointHoverRadius: 10,
-      },
-    ],
+    datasets: Object.keys(groupedBySchool).map((school) => ({
+      label: school,
+      data: groupedBySchool[school].map((item) => ({
+        x: item.median_salary,
+        y: item.employment_rate,
+        degree: item.degree,
+        school: item.school,
+      })),
+      backgroundColor: hexToRgba(getSchoolColor(school), 0.6),
+      borderColor: getSchoolColor(school),
+      pointRadius: 8,
+      pointHoverRadius: 10,
+    })),
   };
 
   const scatterOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    onClick: (event, elements) => {
+      if (elements.length > 0) {
+        const datasetIndex = elements[0].datasetIndex;
+        const index = elements[0].index;
+        const point = scatterData.datasets[datasetIndex].data[index];
+        fetchDegreeHistoricalTrends(point.degree, point.school);
+      }
+    },
     plugins: {
       legend: {
         display: true,
@@ -123,7 +212,8 @@ const SalaryCorrelation = () => {
           label: function (context) {
             const point = context.raw;
             return [
-              `Degree: ${point.label}`,
+              `Degree: ${point.degree}`,
+              `School: ${point.school}`,
               `Salary: $${context.parsed.x}`,
               `Employment: ${context.parsed.y}%`,
             ];
@@ -221,9 +311,135 @@ const SalaryCorrelation = () => {
       </div>
 
       <div className="chart-section">
-        <h3>Salary vs Employment Rate by Degree</h3>
+        {viewMode === 'scatter' && (
+          <p className="chart-hint">💡 Click on any point to see historical trends for that degree</p>
+        )}
+        {viewMode === 'trends' && (
+          <button className="back-btn" onClick={backToScatter}>
+            ← Back to Scatter Plot
+          </button>
+        )}
+        <h3>
+          {viewMode === 'scatter'
+            ? 'Salary vs Employment Rate by Degree'
+            : `Historical Trends: ${selectedDegree?.name}`}
+        </h3>
+        {viewMode === 'trends' && degreeHistoricalData && (
+          <div className="degree-info">
+            <p><strong>School:</strong> {selectedDegree?.school || 'All Schools'}</p>
+            {degreeHistoricalData.schools_offering && degreeHistoricalData.schools_offering.length > 1 && !selectedSchool && (
+              <p><strong>Also offered by:</strong> {degreeHistoricalData.schools_offering.filter(s => s !== selectedDegree?.school).join(', ')}</p>
+            )}
+            {degreeHistoricalData.trends && degreeHistoricalData.trends.length > 0 && (
+              <p><strong>Data available:</strong> {degreeHistoricalData.trends[0].year} - {degreeHistoricalData.trends[degreeHistoricalData.trends.length - 1].year} ({degreeHistoricalData.trends.length} years)</p>
+            )}
+          </div>
+        )}
         <div className="chart-container">
-          <Scatter data={scatterData} options={scatterOptions} />
+          {loadingTrends ? (
+            <div className="loading-breakdown">
+              <div className="spinner"></div>
+              <p>Loading historical data...</p>
+            </div>
+          ) : viewMode === 'scatter' ? (
+            <Scatter data={scatterData} options={scatterOptions} />
+          ) : degreeHistoricalData && degreeHistoricalData.trends ? (
+            <Line
+              data={{
+                labels: degreeHistoricalData.trends.map((t) => t.year),
+                datasets: [
+                  {
+                    label: 'Median Salary ($)',
+                    data: degreeHistoricalData.trends.map((t) => t.median_salary),
+                    borderColor: '#4CAF50',
+                    backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                    yAxisID: 'y',
+                    tension: 0.3,
+                    pointRadius: degreeHistoricalData.trends.map((t) =>
+                      t.year === selectedYear ? 10 : 5
+                    ),
+                    pointBorderWidth: degreeHistoricalData.trends.map((t) =>
+                      t.year === selectedYear ? 3 : 1
+                    ),
+                    pointBackgroundColor: degreeHistoricalData.trends.map((t) =>
+                      t.year === selectedYear ? '#FF5722' : '#4CAF50'
+                    ),
+                  },
+                  {
+                    label: 'Employment Rate (%)',
+                    data: degreeHistoricalData.trends.map((t) => t.employment_rate),
+                    borderColor: '#2196F3',
+                    backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                    yAxisID: 'y1',
+                    tension: 0.3,
+                    pointRadius: degreeHistoricalData.trends.map((t) =>
+                      t.year === selectedYear ? 10 : 5
+                    ),
+                    pointBorderWidth: degreeHistoricalData.trends.map((t) =>
+                      t.year === selectedYear ? 3 : 1
+                    ),
+                    pointBackgroundColor: degreeHistoricalData.trends.map((t) =>
+                      t.year === selectedYear ? '#FF5722' : '#2196F3'
+                    ),
+                  },
+                ],
+              }}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                  mode: 'index',
+                  intersect: false,
+                },
+                plugins: {
+                  legend: {
+                    position: 'top',
+                  },
+                  tooltip: {
+                    callbacks: {
+                      afterLabel: (context) => {
+                        if (context.parsed.x === selectedYear) {
+                          return '← Current Year';
+                        }
+                        return '';
+                      },
+                    },
+                  },
+                },
+                scales: {
+                  y: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    title: {
+                      display: true,
+                      text: 'Median Salary ($)',
+                      font: { weight: 'bold' },
+                    },
+                    ticks: {
+                      callback: (value) => `$${value}`,
+                    },
+                  },
+                  y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    title: {
+                      display: true,
+                      text: 'Employment Rate (%)',
+                      font: { weight: 'bold' },
+                    },
+                    grid: {
+                      drawOnChartArea: false,
+                    },
+                    ticks: {
+                      callback: (value) => `${value}%`,
+                    },
+                  },
+                },
+              }}
+            />
+          ) : null}
         </div>
       </div>
 

@@ -6,7 +6,9 @@ def clean_employment_column(series):
     return pd.to_numeric(
         series.astype(str)
               .str.replace("%", "", regex=False)
-              .replace("N.A.", pd.NA),
+              .str.replace("N.A.", "", regex=False)
+              .str.replace("na", "", regex=False)
+              .replace("", pd.NA),
         errors="coerce"
     )
 
@@ -127,4 +129,90 @@ def employment_by_school(csv_path, year):
         "year": int(year),
         "schools": result,
         "total_schools": len(result)
+    }
+
+
+def employment_by_degree(csv_path, year, school_name, metric_type='overall'):
+    """
+    Get employment rates broken down by degree for a specific school and year.
+    
+    Args:
+        csv_path: Path to GES_cleaned.csv
+        year: Specific year to analyze
+        school_name: Name of the school to filter by (from schools_lookup)
+        metric_type: Either 'overall' or 'ft_perm' to determine which employment rate to show
+    
+    Returns:
+        List of degrees with their employment rates for that school and year
+    """
+    df = pd.read_csv(csv_path)
+    
+    # Load school lookup table
+    base_dir = os.path.dirname(csv_path)
+    schools_lookup = pd.read_csv(os.path.join(base_dir, "schools_lookup.csv"))
+    
+    # Merge to get proper school names
+    df = df.merge(schools_lookup, on="school_id", how="left")
+    
+    # Clean employment columns
+    df["employment_rate_overall"] = clean_employment_column(df["employment_rate_overall"])
+    df["employment_rate_ft_perm"] = clean_employment_column(df["employment_rate_ft_perm"])
+    
+    # Filter by year and school_name (using the merged school_name column)
+    filtered_df = merged_df[
+        (merged_df["year"] == year) & (merged_df["school_name"] == school_name)
+    ]
+    
+    if len(filtered_df) == 0:
+        return {
+            "year": int(year),
+            "school": school_name,
+            "metric_type": metric_type,
+            "degrees": [],
+            "total_degrees": 0
+        }
+    
+    # Determine which column to use
+    rate_column = "employment_rate_overall" if metric_type == "overall" else "employment_rate_ft_perm"
+    
+    # Remove rows with NaN values for the selected metric before aggregating
+    filtered_df = filtered_df.dropna(subset=[rate_column])
+    
+    if len(filtered_df) == 0:
+        return {
+            "year": int(year),
+            "school": school_name,
+            "metric_type": metric_type,
+            "degrees": [],
+            "total_degrees": 0
+        }
+    
+    # Aggregate by degree
+    degree_breakdown = filtered_df.groupby("degree").agg({
+        rate_column: "mean"
+    }).reset_index()
+    
+    # Drop any remaining NaN values (safety measure)
+    degree_breakdown = degree_breakdown.dropna(subset=[rate_column])
+    
+    # Round values
+    degree_breakdown[rate_column] = degree_breakdown[rate_column].round(1)
+    
+    # Sort by employment rate
+    degree_breakdown = degree_breakdown.sort_values(rate_column, ascending=False)
+    
+    # Convert to list of dicts
+    result = []
+    for _, row in degree_breakdown.iterrows():
+        result.append({
+            "degree": row["degree"],
+            "employment_rate": row[rate_column]
+        })
+    
+    return {
+        "year": int(year),
+        "school": school_name,
+        "metric_type": metric_type,
+        "degrees": result,
+        "total_degrees": len(result)
     }

@@ -165,3 +165,62 @@ def get_school_breakdown(enrol_df, grad_df, start_year, end_year):
         })
     
     return breakdown
+
+def enrollment_by_school_for_year(enrolment_path, graduates_path, year):
+    """
+    Get school breakdown for a specific year.
+    
+    Args:
+        enrolment_path: Path to Enrolment_cleaned.csv
+        graduates_path: Path to Graduates_cleaned.csv
+        year: The year to filter by
+    
+    Returns:
+        Dictionary with school breakdown data for the specified year
+    """
+    # Load data
+    enrol_df = pd.read_csv(enrolment_path)
+    grad_df = pd.read_csv(graduates_path)
+    
+    # Clean numeric columns
+    enrol_df["enrolment"] = clean_numeric_column(enrol_df["enrolment"])
+    grad_df["graduates"] = clean_numeric_column(grad_df["graduates"])
+    
+    # Filter for total (MF = Male + Female combined) to avoid double counting
+    enrol_df = enrol_df[enrol_df["sex"] == "MF"].copy()
+    grad_df = grad_df[grad_df["sex"] == "MF"].copy()
+    
+    # Filter by year
+    enrol_df = enrol_df[enrol_df["year"] == year]
+    grad_df = grad_df[grad_df["year"] == year]
+    
+    # Drop NaN values
+    enrol_df = enrol_df.dropna(subset=["enrolment"])
+    grad_df = grad_df.dropna(subset=["graduates"])
+    
+    # Aggregate by school
+    enrol_by_school = enrol_df.groupby(["school_id", "school_name"])["enrolment"].sum().reset_index()
+    grad_by_school = grad_df.groupby(["school_id", "school_name"])["graduates"].sum().reset_index()
+    
+    # Merge
+    merged = pd.merge(enrol_by_school, grad_by_school, on=["school_id", "school_name"], how="outer")
+    merged["completion_rate"] = (merged["graduates"] / merged["enrolment"] * 100).round(1)
+    
+    # Sort by enrolment
+    merged = merged.sort_values("enrolment", ascending=False)
+    
+    schools = []
+    for _, row in merged.iterrows():
+        schools.append({
+            "school_id": int(row["school_id"]),
+            "school_name": row["school_name"],
+            "enrolment": int(row["enrolment"]) if pd.notna(row["enrolment"]) else 0,
+            "graduates": int(row["graduates"]) if pd.notna(row["graduates"]) else 0,
+            "completion_rate": row["completion_rate"] if pd.notna(row["completion_rate"]) else None
+        })
+    
+    return {
+        "year": int(year),
+        "schools": schools,
+        "total_schools": len(schools)
+    }
