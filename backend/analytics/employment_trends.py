@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import os
 
 def clean_employment_column(series):
     return pd.to_numeric(
@@ -13,116 +12,57 @@ def clean_employment_column(series):
     )
 
 def compute_trend_strength(df):
-    # Keep only valid rows
-    trend_df = df.dropna(
-        subset=["year", "employment_rate_overall"]
-    )
-
-    if len(trend_df) < 2:
-        return None
-
-    x = trend_df["year"].values
-    y = trend_df["employment_rate_overall"].values
-    slope, intercept = np.polyfit(x, y, 1)
-
+    trend_df = df.dropna(subset=["year", "employment_rate_overall"])
+    if len(trend_df) < 2: return None
+    x, y = trend_df["year"].values, trend_df["employment_rate_overall"].values
+    slope, _ = np.polyfit(x, y, 1)
     return round(float(slope), 3)
 
-def employment_trend(csv_path):
-    df = pd.read_csv(csv_path)
+def employment_trend(engine):
+    query = "SELECT * FROM graduate_employment_survey"
+    df = pd.read_sql(query, engine)
 
-    df["employment_rate_overall"] = clean_employment_column(
-        df["employment_rate_overall"]
-    )
+    df["employment_rate_overall"] = clean_employment_column(df["employment_rate_overall"])
+    df["employment_rate_ft_perm"] = clean_employment_column(df["employment_rate_ft_perm"])
 
-    df["employment_rate_ft_perm"] = clean_employment_column(
-        df["employment_rate_ft_perm"]
-    )
 
-    trend = (
-        df.groupby("year")[["employment_rate_overall", "employment_rate_ft_perm"]]
-        .mean()
-        .reset_index()
-    )
+    trend = df.groupby("year")[["employment_rate_overall", "employment_rate_ft_perm"]].mean().reset_index()
 
-    trend_strength = compute_trend_strength(trend)
-
-    # for average employment rate KPIs
-    avg_employment_rate_overall = trend["employment_rate_overall"].mean()
-    avg_employment_rate_ft_perm = trend["employment_rate_ft_perm"].mean()
-
-    # for other KPIs if needed, latest in this case is year 2023
-    latest = trend.iloc[-1]    
-
-    # for stability ratio KPI
-    stability_ratio = None
-    overall = latest["employment_rate_overall"]
-    ft = latest["employment_rate_ft_perm"]
-
-    if pd.notna(overall) and pd.notna(ft) and overall != 0:
-        stability_ratio = ft / overall
-
-    # trend = trend.replace({np.nan: None})
-
-    # return trend.to_dict(orient="records")
+    avg_overall = trend["employment_rate_overall"].mean()
+    avg_ft_perm = trend["employment_rate_ft_perm"].mean()
+    
+    # Stability Ratio (Latest Year)
+    latest_year_data = trend.iloc[-1]
+    stability = latest_year_data["employment_rate_ft_perm"] / latest_year_data["employment_rate_overall"]
 
     return {
         "trend": trend.replace({np.nan: None}).to_dict(orient="records"),
         "kpis": {
-            "stability_ratio": stability_ratio,
-            "avg_employment_rate_overall": avg_employment_rate_overall,
-            "avg_employment_rate_ft_perm": avg_employment_rate_ft_perm,
-            "trend_strength": trend_strength
+            "avg_employment_rate_overall": avg_overall,
+            "avg_employment_rate_ft_perm": avg_ft_perm, # Required for 'Avg FT Permanent' card
+            "stability_ratio": stability,               # Required for 'Stability Ratio' card
+            "trend_strength": compute_trend_strength(trend)
         }
     }
-
-
-def employment_by_school(csv_path, year):
-    """
-    Get employment rates broken down by school for a specific year.
+def employment_by_school(engine, year):
+    survey_query = f"SELECT * FROM graduate_employment_survey WHERE year = {year}"
+    df = pd.read_sql(survey_query, engine)
     
-    Args:
-        csv_path: Path to GES_cleaned.csv
-        year: Specific year to analyze
+    mapping_query = "SELECT * FROM school_mapping"
+    schools_lookup = pd.read_sql(mapping_query, engine)
     
-    Returns:
-        List of schools with their employment rates for that year
-    """
-    df = pd.read_csv(csv_path)
-    
-    # Load school lookup table
-    base_dir = os.path.dirname(csv_path)
-    schools_lookup = pd.read_csv(os.path.join(base_dir, "schools_lookup.csv"))
-    
-    # Merge to get proper school names
     df = df.merge(schools_lookup, on="school_id", how="left")
-    
-    # Clean employment columns
     df["employment_rate_overall"] = clean_employment_column(df["employment_rate_overall"])
-    df["employment_rate_ft_perm"] = clean_employment_column(df["employment_rate_ft_perm"])
     
-    # Filter by year
-    year_df = df[df["year"] == year].copy()
+    school_breakdown = df.groupby("full_name")["employment_rate_overall"].mean().reset_index()
+    school_breakdown = school_breakdown.rename(columns={"full_name": "school"}) 
     
-    # Aggregate by school
-    school_breakdown = year_df.groupby("school_name").agg({
-        "employment_rate_overall": "mean",
-        "employment_rate_ft_perm": "mean"
-    }).reset_index()
-    
-    # Round values
-    school_breakdown["employment_rate_overall"] = school_breakdown["employment_rate_overall"].round(1)
-    school_breakdown["employment_rate_ft_perm"] = school_breakdown["employment_rate_ft_perm"].round(1)
-    
-    # Sort by employment rate
-    school_breakdown = school_breakdown.sort_values("employment_rate_overall", ascending=False)
-    
-    # Convert to list of dicts
     result = []
     for _, row in school_breakdown.iterrows():
         result.append({
-            "school": row["school_name"],
+            "school": row["school"],
             "employment_rate_overall": row["employment_rate_overall"],
-            "employment_rate_ft_perm": row["employment_rate_ft_perm"]
+            "total_schools": len(school_breakdown)
         })
     
     return {
@@ -132,36 +72,30 @@ def employment_by_school(csv_path, year):
     }
 
 
-def employment_by_degree(csv_path, year, school_name, metric_type='overall'):
+def employment_by_degree(engine, year, school_name, metric_type='overall'):
     """
     Get employment rates broken down by degree for a specific school and year.
     
     Args:
-        csv_path: Path to GES_cleaned.csv
+        engine: SQLAlchemy engine
         year: Specific year to analyze
-        school_name: Name of the school to filter by (from schools_lookup)
+        school_name: Name of the school to filter by
         metric_type: Either 'overall' or 'ft_perm' to determine which employment rate to show
     
     Returns:
         List of degrees with their employment rates for that school and year
     """
-    df = pd.read_csv(csv_path)
+    survey_query = f"SELECT * FROM graduate_employment_survey WHERE year = {year}"
+    df = pd.read_sql(survey_query, engine)
     
-    # Load school lookup table
-    base_dir = os.path.dirname(csv_path)
-    schools_lookup = pd.read_csv(os.path.join(base_dir, "schools_lookup.csv"))
+    mapping_query = "SELECT * FROM school_mapping"
+    schools_lookup = pd.read_sql(mapping_query, engine)
     
-    # Merge to get proper school names
     df = df.merge(schools_lookup, on="school_id", how="left")
-    
-    # Clean employment columns
     df["employment_rate_overall"] = clean_employment_column(df["employment_rate_overall"])
     df["employment_rate_ft_perm"] = clean_employment_column(df["employment_rate_ft_perm"])
     
-    # Filter by year and school_name (using the merged school_name column)
-    filtered_df = merged_df[
-        (merged_df["year"] == year) & (merged_df["school_name"] == school_name)
-    ]
+    filtered_df = df[df["full_name"] == school_name]
     
     if len(filtered_df) == 0:
         return {
@@ -172,10 +106,7 @@ def employment_by_degree(csv_path, year, school_name, metric_type='overall'):
             "total_degrees": 0
         }
     
-    # Determine which column to use
     rate_column = "employment_rate_overall" if metric_type == "overall" else "employment_rate_ft_perm"
-    
-    # Remove rows with NaN values for the selected metric before aggregating
     filtered_df = filtered_df.dropna(subset=[rate_column])
     
     if len(filtered_df) == 0:
@@ -187,21 +118,14 @@ def employment_by_degree(csv_path, year, school_name, metric_type='overall'):
             "total_degrees": 0
         }
     
-    # Aggregate by degree
     degree_breakdown = filtered_df.groupby("degree").agg({
         rate_column: "mean"
     }).reset_index()
     
-    # Drop any remaining NaN values (safety measure)
     degree_breakdown = degree_breakdown.dropna(subset=[rate_column])
-    
-    # Round values
     degree_breakdown[rate_column] = degree_breakdown[rate_column].round(1)
-    
-    # Sort by employment rate
     degree_breakdown = degree_breakdown.sort_values(rate_column, ascending=False)
     
-    # Convert to list of dicts
     result = []
     for _, row in degree_breakdown.iterrows():
         result.append({
