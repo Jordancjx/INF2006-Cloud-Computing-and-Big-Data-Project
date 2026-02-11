@@ -36,7 +36,7 @@ const EmploymentTrends = () => {
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [selectedMetric, setSelectedMetric] = useState('overall'); // 'overall' or 'ft_perm'
 
-  const API_BASE_URL = "http://3.238.41.206:5000";
+  const API_BASE_URL = "";
 
   const fetchSchoolBreakdown = async (year) => {
     setLoadingBreakdown(true);
