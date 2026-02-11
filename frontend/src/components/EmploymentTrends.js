@@ -153,6 +153,76 @@ const EmploymentTrends = () => {
 
   const { kpis } = data;
 
+  // Prepare chart data for Line chart
+  const chartData = {
+    labels: data.trend.map(item => item.year),
+    datasets: [
+      {
+        label: "Overall Employment Rate (%)",
+        data: data.trend.map(item => item.employment_rate_overall),
+        borderColor: "rgb(102, 126, 234)",
+        backgroundColor: "rgba(102, 126, 234, 0.1)",
+        tension: 0.3,
+        fill: true
+      },
+      {
+        label: "Full-Time Permanent Rate (%)",
+        data: data.trend.map(item => item.employment_rate_ft_perm),
+        borderColor: "rgb(118, 75, 162)",
+        backgroundColor: "rgba(118, 75, 162, 0.1)",
+        tension: 0.3,
+        fill: true
+      }
+    ]
+  };
+
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    onClick: (event, elements) => {
+      if (elements.length > 0) {
+        const index = elements[0].index;
+        const year = data.trend[index].year;
+        fetchSchoolBreakdown(year);
+      }
+    },
+    plugins: {
+      legend: {
+        position: 'top',
+        labels: {
+          font: { size: 14 },
+          padding: 15
+        }
+      },
+      tooltip: {
+        callbacks: {
+          label: (context) => `${context.dataset.label}: ${context.parsed.y.toFixed(1)}%`
+        }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 100,
+        ticks: {
+          callback: (value) => `${value}%`
+        },
+        title: {
+          display: true,
+          text: 'Employment Rate (%)',
+          font: { size: 14, weight: 'bold' }
+        }
+      },
+      x: {
+        title: {
+          display: true,
+          text: 'Year',
+          font: { size: 14, weight: 'bold' }
+        }
+      }
+    }
+  };
+
   return (
     <div className="enrollment-analysis">
       <h2 className="section-title">Employment Rate Analytics</h2>

@@ -69,7 +69,7 @@ def get_employment_by_degree():
                 'error': 'metric_type must be "overall" or "ft_perm"'
             }), 400
         
-        result = employment_by_degree(GES_CSV_PATH, year, school, metric_type)
+        result = employment_by_degree(db_engine, year, school, metric_type)
         return jsonify({
             'success': True,
             'data': result
@@ -109,7 +109,7 @@ def get_degree_historical_trends():
                 'error': 'Degree parameter is required'
             }), 400
         
-        result = degree_historical_trends(GES_CSV_PATH, degree, school)
+        result = degree_historical_trends(db_engine, degree, school)
         return jsonify({
             'success': True,
             'data': result
