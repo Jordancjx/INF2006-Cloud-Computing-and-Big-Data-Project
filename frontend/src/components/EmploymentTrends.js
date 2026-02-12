@@ -36,7 +36,7 @@ const EmploymentTrends = () => {
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [selectedMetric, setSelectedMetric] = useState('overall'); // 'overall' or 'ft_perm'
 
-  const API_BASE_URL = "";
+  const API_BASE_URL = "http://INF2006-ALB-1647200621.us-east-1.elb.amazonaws.com";
 
   const fetchSchoolBreakdown = async (year) => {
     setLoadingBreakdown(true);

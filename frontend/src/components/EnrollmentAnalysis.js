@@ -37,7 +37,7 @@ const EnrollmentAnalysis = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_BASE_URL = "http://daaas-alb-444050558.us-east-1.elb.amazonaws.com"; 
+  const API_BASE_URL = "http://INF2006-ALB-1647200621.us-east-1.elb.amazonaws.com"; 
 
   useEffect(() => {
     const fetchData = async () => {

@@ -135,7 +135,8 @@ def get_enrollment_graduate_analysis():
 @app.route("/api/analytics/enrollment-by-school-year")
 def get_enrollment_by_school_year():
     """
-    API endpoint for enrollment breakdown by school for a specific year
+    API endpoint for enrollment breakdown by school for a specific year.
+    Uses RDS database engine instead of local CSV paths.
     Query params: 
         - year (required)
     Returns: JSON with school-level enrollment and graduate data for the specified year
@@ -149,11 +150,7 @@ def get_enrollment_by_school_year():
                 'error': 'Year parameter is required'
             }), 400
         
-        result = enrollment_by_school_for_year(
-            ENROLMENT_CSV_PATH,
-            GRADUATES_CSV_PATH,
-            year
-        )
+        result = enrollment_by_school_for_year(db_engine, year)
         
         return jsonify({
             'success': True,
