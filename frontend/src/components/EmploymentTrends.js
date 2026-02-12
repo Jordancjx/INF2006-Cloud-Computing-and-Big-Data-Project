@@ -271,10 +271,46 @@ const EmploymentTrends = () => {
         </div>
         
         {viewMode === 'trend' && (
-          <p className="chart-hint">💡 Click on any year to see school breakdown</p>
+          <>
+            <p className="chart-hint">💡 Click on any year to see school breakdown</p>
+            <div className="insights-box">
+              <h4>📊 What This Graph Shows:</h4>
+              <ul>
+                <li><strong>Trend Analysis:</strong> Track year-over-year changes to identify improving or declining employment outcomes</li>
+                <li><strong>Gap Interpretation:</strong> The gap between lines shows the difference between overall employment and full-time permanent positions (underemployment)</li>
+                <li><strong>Narrowing Gap:</strong> A declining gap indicates more graduates securing stable, permanent roles rather than temporary work</li>
+                <li><strong>High vs Low Rates:</strong> Higher percentages show stronger job market demand, while dips may signal economic downturns or program misalignment</li>
+              </ul>
+              <p className="audience-note"><em>For students: Choose programs with upward trends | For counsellors: Focus on stable employment metrics | For admins: Monitor gaps for curriculum improvements</em></p>
+            </div>
+          </>
         )}
         {viewMode === 'breakdown' && (
-          <p className="chart-hint">💡 Click on any bar to see degree breakdown</p>
+          <>
+            <p className="chart-hint">💡 Click on any bar to see degree breakdown</p>
+            <div className="insights-box">
+              <h4>📊 What This Graph Shows:</h4>
+              <ul>
+                <li><strong>School Comparison:</strong> Compare which institutions deliver better employment outcomes for their graduates</li>
+                <li><strong>Dual Metrics:</strong> Schools with high overall but low FT permanent rates may have underemployment issues</li>
+                <li><strong>Performance Benchmarks:</strong> Identify top-performing schools for best career prospects or schools needing enhanced career support</li>
+                <li><strong>Quality Indicators:</strong> Consistent high rates across both metrics suggest strong industry partnerships and curriculum relevance</li>
+              </ul>
+              <p className="audience-note"><em>For students: Prioritize schools with strong FT permanent rates | For counsellors: Address underemployment patterns | For admins: Benchmark against competitors</em></p>
+            </div>
+          </>
+        )}
+        {viewMode === 'degree' && (
+          <div className="insights-box">
+            <h4>📊 What This Graph Shows:</h4>
+            <ul>
+              <li><strong>Program Effectiveness:</strong> Identify which degree programs lead to the strongest employment outcomes within this school</li>
+              <li><strong>Market Demand:</strong> Higher rates indicate strong industry demand and graduate readiness for that field</li>
+              <li><strong>Program Selection:</strong> Use these metrics to guide students toward programs with proven employment success</li>
+              <li><strong>Improvement Areas:</strong> Lower-performing programs may benefit from curriculum updates or enhanced industry connections</li>
+            </ul>
+            <p className="audience-note"><em>For students: Choose programs with proven job placement | For counsellors: Provide data-driven program recommendations | For admins: Prioritize resources for underperforming programs</em></p>
+          </div>
         )}
         
         <div className="chart-container">

@@ -53,8 +53,9 @@ def employment_by_school(engine, year):
     
     df = df.merge(schools_lookup, on="school_id", how="left")
     df["employment_rate_overall"] = clean_employment_column(df["employment_rate_overall"])
+    df["employment_rate_ft_perm"] = clean_employment_column(df["employment_rate_ft_perm"])
     
-    school_breakdown = df.groupby("full_name")["employment_rate_overall"].mean().reset_index()
+    school_breakdown = df.groupby("full_name")[["employment_rate_overall", "employment_rate_ft_perm"]].mean().reset_index()
     school_breakdown = school_breakdown.rename(columns={"full_name": "school"}) 
     
     result = []
@@ -62,6 +63,7 @@ def employment_by_school(engine, year):
         result.append({
             "school": row["school"],
             "employment_rate_overall": row["employment_rate_overall"],
+            "employment_rate_ft_perm": row["employment_rate_ft_perm"],
             "total_schools": len(school_breakdown)
         })
     

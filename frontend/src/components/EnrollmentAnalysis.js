@@ -280,6 +280,16 @@ const EnrollmentAnalysis = () => {
 
           <div className="chart-section">
             <h3>Enrollment vs Graduates Trend (Click on a year to see school breakdown)</h3>
+            <div className="insights-box">
+              <h4>📊 What This Graph Shows:</h4>
+              <ul>
+                <li><strong>Completion Rate Trends:</strong> The gap between bars shows student retention from enrollment to graduation</li>
+                <li><strong>Attrition Patterns:</strong> Widening gaps indicate higher dropout rates or program extensions that may need addressing</li>
+                <li><strong>Growth Indicators:</strong> Increasing enrollment numbers show program popularity, but check if graduation rates keep pace</li>
+                <li><strong>Educational Efficiency:</strong> Years where graduation closely matches enrollment suggest effective student support systems</li>
+              </ul>
+              <p className="audience-note"><em>For students: Look for consistent graduation numbers | For counsellors: Identify retention challenges | For admins: Track capacity utilization and student success rates</em></p>
+            </div>
             <div className="chart-container">
               <Bar data={chartData} options={chartOptions} />
             </div>
@@ -320,6 +330,16 @@ const EnrollmentAnalysis = () => {
 
           <div className="chart-section">
             <h3>School Comparison (Enrolment vs Graduates)</h3>
+            <div className="insights-box">
+              <h4>📊 What This Graph Shows:</h4>
+              <ul>
+                <li><strong>Institutional Scale:</strong> Compare enrollment capacity and graduate output across different institutions</li>
+                <li><strong>Completion Rate Comparison:</strong> Identify which schools most effectively graduate their enrolled students</li>
+                <li><strong>Outlier Detection:</strong> Schools with unusually low completion rates may indicate systemic support issues or program challenges</li>
+                <li><strong>Resource Effectiveness:</strong> Assess if institutions are optimizing their capacity to convert enrollments into graduations</li>
+              </ul>
+              <p className="audience-note"><em>For students: Choose schools with strong completion records | For counsellors: Understand school-specific challenges | For admins: Benchmark against peer institutions</em></p>
+            </div>
             <div className="chart-container">
               <Bar 
                 data={{
