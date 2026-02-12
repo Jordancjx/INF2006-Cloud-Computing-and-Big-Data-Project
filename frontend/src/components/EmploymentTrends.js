@@ -35,6 +35,7 @@ const EmploymentTrends = () => {
   const [degreeBreakdown, setDegreeBreakdown] = useState(null);
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [selectedMetric, setSelectedMetric] = useState('overall'); // 'overall' or 'ft_perm'
+  const [insightsExpanded, setInsightsExpanded] = useState(false);
 
   const API_BASE_URL = "http://INF2006-ALB-1647200621.us-east-1.elb.amazonaws.com";
 
@@ -274,7 +275,11 @@ const EmploymentTrends = () => {
           <>
             <p className="chart-hint">💡 Click on any year to see school breakdown</p>
             <div className="insights-box">
-              <h4>📊 What This Graph Shows:</h4>
+              <h4 onClick={() => setInsightsExpanded(!insightsExpanded)} className="insights-header">
+                📊 What This Graph Shows {insightsExpanded ? '▼' : '▶'}
+              </h4>
+              {insightsExpanded && (
+              <>
               <ul>
                 <li><strong>Trend Analysis:</strong> Track year-over-year changes to identify improving or declining employment outcomes</li>
                 <li><strong>Gap Interpretation:</strong> The gap between lines shows the difference between overall employment and full-time permanent positions (underemployment)</li>
@@ -282,6 +287,8 @@ const EmploymentTrends = () => {
                 <li><strong>High vs Low Rates:</strong> Higher percentages show stronger job market demand, while dips may signal economic downturns or program misalignment</li>
               </ul>
               <p className="audience-note"><em>For students: Choose programs with upward trends | For counsellors: Focus on stable employment metrics | For admins: Monitor gaps for curriculum improvements</em></p>
+              </>
+              )}
             </div>
           </>
         )}
@@ -289,7 +296,11 @@ const EmploymentTrends = () => {
           <>
             <p className="chart-hint">💡 Click on any bar to see degree breakdown</p>
             <div className="insights-box">
-              <h4>📊 What This Graph Shows:</h4>
+              <h4 onClick={() => setInsightsExpanded(!insightsExpanded)} className="insights-header">
+                📊 What This Graph Shows {insightsExpanded ? '▼' : '▶'}
+              </h4>
+              {insightsExpanded && (
+              <>
               <ul>
                 <li><strong>School Comparison:</strong> Compare which institutions deliver better employment outcomes for their graduates</li>
                 <li><strong>Dual Metrics:</strong> Schools with high overall but low FT permanent rates may have underemployment issues</li>
@@ -297,12 +308,18 @@ const EmploymentTrends = () => {
                 <li><strong>Quality Indicators:</strong> Consistent high rates across both metrics suggest strong industry partnerships and curriculum relevance</li>
               </ul>
               <p className="audience-note"><em>For students: Prioritize schools with strong FT permanent rates | For counsellors: Address underemployment patterns | For admins: Benchmark against competitors</em></p>
+              </>
+              )}
             </div>
           </>
         )}
         {viewMode === 'degree' && (
           <div className="insights-box">
-            <h4>📊 What This Graph Shows:</h4>
+            <h4 onClick={() => setInsightsExpanded(!insightsExpanded)} className="insights-header">
+              📊 What This Graph Shows {insightsExpanded ? '▼' : '▶'}
+            </h4>
+            {insightsExpanded && (
+            <>
             <ul>
               <li><strong>Program Effectiveness:</strong> Identify which degree programs lead to the strongest employment outcomes within this school</li>
               <li><strong>Market Demand:</strong> Higher rates indicate strong industry demand and graduate readiness for that field</li>
@@ -310,6 +327,8 @@ const EmploymentTrends = () => {
               <li><strong>Improvement Areas:</strong> Lower-performing programs may benefit from curriculum updates or enhanced industry connections</li>
             </ul>
             <p className="audience-note"><em>For students: Choose programs with proven job placement | For counsellors: Provide data-driven program recommendations | For admins: Prioritize resources for underperforming programs</em></p>
+            </>
+            )}
           </div>
         )}
         

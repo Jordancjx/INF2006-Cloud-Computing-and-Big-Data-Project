@@ -325,6 +325,17 @@
   gap: 0.5rem;
 }
 
+.insights-header {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+  margin-bottom: 0 !important;
+}
+
+.insights-header:hover {
+  color: #004999;
+}
+
 .insights-box ul {
   list-style: none;
   padding: 0;

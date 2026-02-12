@@ -293,6 +293,15 @@
   font-weight: 500;
 }
 
+/* Chart Hint */
+.chart-hint {
+  color: #666;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
 /* Insights Box - Compact Style */
 .insights-box {
   background: linear-gradient(135deg, #f8f9ff 0%, #fff8f0 100%);
@@ -312,6 +321,17 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.insights-header {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+  margin-bottom: 0 !important;
+}
+
+.insights-header:hover {
+  color: #004999;
 }
 
 .insights-box ul {

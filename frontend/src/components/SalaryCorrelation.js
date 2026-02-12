@@ -20,6 +20,7 @@ const SalaryCorrelation = () => {
   const [selectedDegree, setSelectedDegree] = useState(null);
   const [degreeHistoricalData, setDegreeHistoricalData] = useState(null);
   const [loadingTrends, setLoadingTrends] = useState(false);
+  const [insightsExpanded, setInsightsExpanded] = useState(false);
 
   // Color palette for different schools
   const schoolColors = {
@@ -335,7 +336,11 @@ const SalaryCorrelation = () => {
           <>
             <p className="chart-hint">💡 Click on any point to see historical trends for that degree</p>
             <div className="insights-box">
-              <h4>📊 What This Graph Shows:</h4>
+              <h4 onClick={() => setInsightsExpanded(!insightsExpanded)} className="insights-header">
+                📊 What This Graph Shows {insightsExpanded ? '▼' : '▶'}
+              </h4>
+              {insightsExpanded && (
+              <>
               <ul>
                 <li><strong>Correlation Strength:</strong> Points trending upward-right show degrees where higher salaries align with better employment rates</li>
                 <li><strong>Value Quadrants:</strong> Top-right = desirable programs (high salary + high employment); bottom-left = challenging markets</li>
@@ -343,12 +348,18 @@ const SalaryCorrelation = () => {
                 <li><strong>School Differentiation:</strong> Color coding reveals which institutions deliver better outcomes for similar programs</li>
               </ul>
               <p className="audience-note"><em>For students: Target top-right quadrant programs | For counsellors: Explain salary-employment tradeoffs | For admins: Identify competitive advantages</em></p>
+              </>
+              )}
             </div>
           </>
         )}
         {viewMode === 'trends' && degreeHistoricalData && (
           <div className="insights-box">
-            <h4>📊 What This Graph Shows:</h4>
+            <h4 onClick={() => setInsightsExpanded(!insightsExpanded)} className="insights-header">
+              📊 What This Graph Shows {insightsExpanded ? '▼' : '▶'}
+            </h4>
+            {insightsExpanded && (
+            <>
             <ul>
               <li><strong>Salary Trajectory:</strong> Track if earning potential for this degree is rising, stagnating, or declining over time</li>
               <li><strong>Employment Stability:</strong> Consistent employment rates indicate reliable job market demand; volatility suggests sensitivity to economic changes</li>
@@ -356,6 +367,8 @@ const SalaryCorrelation = () => {
               <li><strong>Long-term Value:</strong> Multi-year perspective helps assess if this program is a sound investment for future careers</li>
             </ul>
             <p className="audience-note"><em>For students: Evaluate long-term career prospects | For counsellors: Use historical data for realistic expectations | For admins: Monitor program competitiveness</em></p>
+            </>
+            )}
           </div>
         )}
         <div className="chart-container">

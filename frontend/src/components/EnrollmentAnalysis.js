@@ -26,6 +26,7 @@ const EnrollmentAnalysis = () => {
   const [viewMode, setViewMode] = useState('chart'); // 'chart' or 'breakdown'
   const [selectedYear, setSelectedYear] = useState(null);
   const [schoolBreakdown, setSchoolBreakdown] = useState(null);
+  const [insightsExpanded, setInsightsExpanded] = useState(false);
 
   const [data, setData] = useState({
     start_year: 2018,
@@ -279,9 +280,14 @@ const EnrollmentAnalysis = () => {
           </div>
 
           <div className="chart-section">
-            <h3>Enrollment vs Graduates Trend (Click on a year to see school breakdown)</h3>
+            <h3>Enrollment vs Graduates Trend</h3>
+            <p className="chart-hint">💡 Click on any year to see school breakdown</p>
             <div className="insights-box">
-              <h4>📊 What This Graph Shows:</h4>
+              <h4 onClick={() => setInsightsExpanded(!insightsExpanded)} className="insights-header">
+                📊 What This Graph Shows {insightsExpanded ? '▼' : '▶'}
+              </h4>
+              {insightsExpanded && (
+              <>
               <ul>
                 <li><strong>Completion Rate Trends:</strong> The gap between bars shows student retention from enrollment to graduation</li>
                 <li><strong>Attrition Patterns:</strong> Widening gaps indicate higher dropout rates or program extensions that may need addressing</li>
@@ -289,6 +295,8 @@ const EnrollmentAnalysis = () => {
                 <li><strong>Educational Efficiency:</strong> Years where graduation closely matches enrollment suggest effective student support systems</li>
               </ul>
               <p className="audience-note"><em>For students: Look for consistent graduation numbers | For counsellors: Identify retention challenges | For admins: Track capacity utilization and student success rates</em></p>
+              </>
+              )}
             </div>
             <div className="chart-container">
               <Bar data={chartData} options={chartOptions} />
@@ -331,7 +339,11 @@ const EnrollmentAnalysis = () => {
           <div className="chart-section">
             <h3>School Comparison (Enrolment vs Graduates)</h3>
             <div className="insights-box">
-              <h4>📊 What This Graph Shows:</h4>
+              <h4 onClick={() => setInsightsExpanded(!insightsExpanded)} className="insights-header">
+                📊 What This Graph Shows {insightsExpanded ? '▼' : '▶'}
+              </h4>
+              {insightsExpanded && (
+              <>
               <ul>
                 <li><strong>Institutional Scale:</strong> Compare enrollment capacity and graduate output across different institutions</li>
                 <li><strong>Completion Rate Comparison:</strong> Identify which schools most effectively graduate their enrolled students</li>
@@ -339,6 +351,8 @@ const EnrollmentAnalysis = () => {
                 <li><strong>Resource Effectiveness:</strong> Assess if institutions are optimizing their capacity to convert enrollments into graduations</li>
               </ul>
               <p className="audience-note"><em>For students: Choose schools with strong completion records | For counsellors: Understand school-specific challenges | For admins: Benchmark against peer institutions</em></p>
+              </>
+              )}
             </div>
             <div className="chart-container">
               <Bar 
